@@ -1,0 +1,187 @@
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker}{\section{doxypypy.\-doxypypy.\-Ast\-Walker Class Reference}
+\label{classdoxypypy_1_1doxypypy_1_1_ast_walker}\index{doxypypy.\-doxypypy.\-Ast\-Walker@{doxypypy.\-doxypypy.\-Ast\-Walker}}
+}
+
+
+A walker that'll recursively progress through an A\-S\-T.  
+
+
+Inheritance diagram for doxypypy.\-doxypypy.\-Ast\-Walker\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdoxypypy_1_1doxypypy_1_1_ast_walker}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_acfee0cecf002eda81ab938aa0c7aa95a}{generic\-\_\-visit}
+\begin{DoxyCompactList}\small\item\em Extract useful information from relevant nodes including docstrings. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_af651921b10618f1d86ef7d331b8fcec3}{visit}
+\begin{DoxyCompactList}\small\item\em Visit a node and extract useful information from it. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_ad1abc2acf1f4453ff8c1e840079bc5c1}{visit\-\_\-\-Module}
+\begin{DoxyCompactList}\small\item\em Handles the module-\/level docstring. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_a59745774cc4349d8020d6be530b4a0eb}{visit\-\_\-\-Assign}
+\begin{DoxyCompactList}\small\item\em Handles assignments within code. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_af12607dc155772e5befd9774ea4194e2}{visit\-\_\-\-Call}
+\begin{DoxyCompactList}\small\item\em Handles function calls within code. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_ac692e0258538d9465051679eec47ce9a}{visit\-\_\-\-Function\-Def}
+\begin{DoxyCompactList}\small\item\em Handles function definitions within code. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_a2001192ab8fd61eafac771db59102d15}{visit\-\_\-\-Class\-Def}
+\begin{DoxyCompactList}\small\item\em Handles class definitions within code. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_a32daaefd7456e4e9bbebcbfb93120ed4}{parse\-Lines}
+\begin{DoxyCompactList}\small\item\em Form an A\-S\-T for the code and produce a new version of the source. \end{DoxyCompactList}\item 
+def \hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_a3055ed0ac5063283e09c1d5eaee5a165}{get\-Lines}
+\begin{DoxyCompactList}\small\item\em Return the modified file once processing has been completed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_ab77b4c94a443f0fbdf0fcd28f69ff8c4}{lines}
+\item 
+\hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_ae8bf6ec89e1a489b597f7955ba75cab3}{options}
+\item 
+\hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_ad509d320dcdb995e199dad9cf35957bb}{in\-Filename}
+\item 
+\hyperlink{classdoxypypy_1_1doxypypy_1_1_ast_walker_a3683c5fcc8b34d2c369ca2d06522e80b}{doc\-Lines}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A walker that'll recursively progress through an A\-S\-T. 
+
+Given an abstract syntax tree for Python code, walk through all the nodes looking for significant types (for our purposes we only care about module starts, class definitions, function definitions, variable assignments, and function calls, as all the information we want to pass to Doxygen is found within these constructs). If the autobrief option is set, it further attempts to parse docstrings to create appropriate Doxygen tags. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_acfee0cecf002eda81ab938aa0c7aa95a}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!generic\-\_\-visit@{generic\-\_\-visit}}
+\index{generic\-\_\-visit@{generic\-\_\-visit}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{generic\-\_\-visit}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-generic\-\_\-visit (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{node, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_acfee0cecf002eda81ab938aa0c7aa95a}
+
+
+Extract useful information from relevant nodes including docstrings. 
+
+This is virtually identical to the standard version contained in Node\-Visitor. It is only overridden because we're tracking extra information (the hierarchy of containing nodes) not preserved in the original. \hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_a3055ed0ac5063283e09c1d5eaee5a165}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!get\-Lines@{get\-Lines}}
+\index{get\-Lines@{get\-Lines}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{get\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-get\-Lines (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_a3055ed0ac5063283e09c1d5eaee5a165}
+
+
+Return the modified file once processing has been completed. 
+
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_a32daaefd7456e4e9bbebcbfb93120ed4}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!parse\-Lines@{parse\-Lines}}
+\index{parse\-Lines@{parse\-Lines}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{parse\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-parse\-Lines (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_a32daaefd7456e4e9bbebcbfb93120ed4}
+
+
+Form an A\-S\-T for the code and produce a new version of the source. 
+
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_af651921b10618f1d86ef7d331b8fcec3}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!visit@{visit}}
+\index{visit@{visit}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{visit}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-visit (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{node, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_af651921b10618f1d86ef7d331b8fcec3}
+
+
+Visit a node and extract useful information from it. 
+
+This is virtually identical to the standard version contained in Node\-Visitor. It is only overridden because we're tracking extra information (the hierarchy of containing nodes) not preserved in the original. \hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_a59745774cc4349d8020d6be530b4a0eb}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!visit\-\_\-\-Assign@{visit\-\_\-\-Assign}}
+\index{visit\-\_\-\-Assign@{visit\-\_\-\-Assign}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{visit\-\_\-\-Assign}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-visit\-\_\-\-Assign (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{node, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_a59745774cc4349d8020d6be530b4a0eb}
+
+
+Handles assignments within code. 
+
+Variable assignments in Python are used to represent interface attributes in addition to basic variables. If an assignment appears to be an attribute, it gets labeled as such for Doxygen. If a variable name uses Python mangling or is just a bed lump, it is labeled as private for Doxygen. \hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_af12607dc155772e5befd9774ea4194e2}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!visit\-\_\-\-Call@{visit\-\_\-\-Call}}
+\index{visit\-\_\-\-Call@{visit\-\_\-\-Call}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{visit\-\_\-\-Call}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-visit\-\_\-\-Call (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{node, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_af12607dc155772e5befd9774ea4194e2}
+
+
+Handles function calls within code. 
+
+Function calls in Python are used to represent interface implementations in addition to their normal use. If a call appears to mark an implementation, it gets labeled as such for Doxygen. \hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_a2001192ab8fd61eafac771db59102d15}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!visit\-\_\-\-Class\-Def@{visit\-\_\-\-Class\-Def}}
+\index{visit\-\_\-\-Class\-Def@{visit\-\_\-\-Class\-Def}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{visit\-\_\-\-Class\-Def}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-visit\-\_\-\-Class\-Def (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{node, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_a2001192ab8fd61eafac771db59102d15}
+
+
+Handles class definitions within code. 
+
+Process the docstring. Note though that in Python Class definitions are used to define interfaces in addition to classes. If a class definition appears to be an interface definition tag it as an interface definition for Doxygen. Otherwise tag it as a class definition for Doxygen. \hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_ac692e0258538d9465051679eec47ce9a}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!visit\-\_\-\-Function\-Def@{visit\-\_\-\-Function\-Def}}
+\index{visit\-\_\-\-Function\-Def@{visit\-\_\-\-Function\-Def}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{visit\-\_\-\-Function\-Def}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-visit\-\_\-\-Function\-Def (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{node, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_ac692e0258538d9465051679eec47ce9a}
+
+
+Handles function definitions within code. 
+
+Process a function's docstring, keeping well aware of the function's context and whether or not it's part of an interface definition. \hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_ad1abc2acf1f4453ff8c1e840079bc5c1}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!visit\-\_\-\-Module@{visit\-\_\-\-Module}}
+\index{visit\-\_\-\-Module@{visit\-\_\-\-Module}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{visit\-\_\-\-Module}]{\setlength{\rightskip}{0pt plus 5cm}def doxypypy.\-doxypypy.\-Ast\-Walker.\-visit\-\_\-\-Module (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{node, }
+\item[{}]{kwargs}
+\end{DoxyParamCaption}
+)}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_ad1abc2acf1f4453ff8c1e840079bc5c1}
+
+
+Handles the module-\/level docstring. 
+
+Process the module-\/level docstring and create appropriate Doxygen tags if autobrief option is set. 
+
+\subsection{Member Data Documentation}
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_a3683c5fcc8b34d2c369ca2d06522e80b}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!doc\-Lines@{doc\-Lines}}
+\index{doc\-Lines@{doc\-Lines}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{doc\-Lines}]{\setlength{\rightskip}{0pt plus 5cm}doxypypy.\-doxypypy.\-Ast\-Walker.\-doc\-Lines}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_a3683c5fcc8b34d2c369ca2d06522e80b}
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_ad509d320dcdb995e199dad9cf35957bb}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!in\-Filename@{in\-Filename}}
+\index{in\-Filename@{in\-Filename}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{in\-Filename}]{\setlength{\rightskip}{0pt plus 5cm}doxypypy.\-doxypypy.\-Ast\-Walker.\-in\-Filename}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_ad509d320dcdb995e199dad9cf35957bb}
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_ab77b4c94a443f0fbdf0fcd28f69ff8c4}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!lines@{lines}}
+\index{lines@{lines}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{lines}]{\setlength{\rightskip}{0pt plus 5cm}doxypypy.\-doxypypy.\-Ast\-Walker.\-lines}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_ab77b4c94a443f0fbdf0fcd28f69ff8c4}
+\hypertarget{classdoxypypy_1_1doxypypy_1_1_ast_walker_ae8bf6ec89e1a489b597f7955ba75cab3}{\index{doxypypy\-::doxypypy\-::\-Ast\-Walker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}!options@{options}}
+\index{options@{options}!doxypypy::doxypypy::AstWalker@{doxypypy\-::doxypypy\-::\-Ast\-Walker}}
+\subsubsection[{options}]{\setlength{\rightskip}{0pt plus 5cm}doxypypy.\-doxypypy.\-Ast\-Walker.\-options}}\label{classdoxypypy_1_1doxypypy_1_1_ast_walker_ae8bf6ec89e1a489b597f7955ba75cab3}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+doxypypy/doxypypy/\hyperlink{doxypypy_8py}{doxypypy.\-py}\end{DoxyCompactItemize}

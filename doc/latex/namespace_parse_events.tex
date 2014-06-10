@@ -1,0 +1,84 @@
+\hypertarget{namespace_parse_events}{\section{Parse\-Events Namespace Reference}
+\label{namespace_parse_events}\index{Parse\-Events@{Parse\-Events}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}
+\begin{DoxyCompactList}\small\item\em Does nothing more than demonstrate syntax. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_ac0f0207d1a304ffa7539b8c287aa682b}{event\-\_\-to\-\_\-xml}
+\begin{DoxyCompactList}\small\item\em This function turns a command dataframe (split by header/data rows) into a printable X\-M\-L format Run 'help(cmd\-\_\-to\-\_\-xml)' in interactive mode to print this statement out Input $\ast$df\-\_\-h -\/ Header row dataframe taken from command spreadsheet $\ast$df\-\_\-d -\/ Data rows dataframe taken from command spreadsheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespace_parse_events_ac0f0207d1a304ffa7539b8c287aa682b}{\index{Parse\-Events@{Parse\-Events}!event\-\_\-to\-\_\-xml@{event\-\_\-to\-\_\-xml}}
+\index{event\-\_\-to\-\_\-xml@{event\-\_\-to\-\_\-xml}!ParseEvents@{Parse\-Events}}
+\subsubsection[{event\-\_\-to\-\_\-xml}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-event\-\_\-to\-\_\-xml (
+\begin{DoxyParamCaption}
+\item[{}]{df\-\_\-h, }
+\item[{}]{df\-\_\-d, }
+\item[{}]{root, }
+\item[{}]{platform = {\ttfamily \char`\"{}SAT2\char`\"{}}, }
+\item[{}]{mode = {\ttfamily 'w'}, }
+\item[{}]{pretty = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_ac0f0207d1a304ffa7539b8c287aa682b}
+
+
+This function turns a command dataframe (split by header/data rows) into a printable X\-M\-L format Run 'help(cmd\-\_\-to\-\_\-xml)' in interactive mode to print this statement out Input $\ast$df\-\_\-h -\/ Header row dataframe taken from command spreadsheet $\ast$df\-\_\-d -\/ Data rows dataframe taken from command spreadsheet. 
+
+Contains Argument and format specification $\ast$(filename) -\/ if provided, write the X\-M\-L output to a file given in this variable. $\ast$(mode) -\/ The mode of the file to write xml output to. Default is 'w', change to 'a' to append --N\-O\-T\-E I A\-D\-D\-E\-D A\-P\-P\-E\-N\-D\-I\-N\-G T\-O T\-H\-E E\-T\-R\-E\-E S\-O\-U\-R\-C\-E C\-O\-D\-E. W\-O\-N'T E\-X\-I\-S\-T N\-O\-R\-M\-A\-L\-L\-Y... Returns xml Etree Object \hypertarget{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{\index{Parse\-Events@{Parse\-Events}!myfunction@{myfunction}}
+\index{myfunction@{myfunction}!ParseEvents@{Parse\-Events}}
+\subsubsection[{myfunction}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-myfunction (
+\begin{DoxyParamCaption}
+\item[{}]{arg1, }
+\item[{}]{arg2, }
+\item[{}]{kwarg = {\ttfamily 'whatever.'}}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}
+
+
+Does nothing more than demonstrate syntax. 
+
+This is an example of how a Pythonic human-\/readable docstring can get parsed by doxypypy and marked up with Doxygen commands as a regular input filter to Doxygen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg1} & A positional argument. \\
+\hline
+{\em arg2} & Another positional argument.\\
+\hline
+{\em kwarg} & A keyword argument.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string holding the result.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Zero\-Division\-Error} & \\
+\hline
+{\em Assertion\-Error} & \\
+\hline
+{\em Value\-Error.} & {\bfseries Examples} 
+\begin{DoxyCode}
+1 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(2, 3)
+2 \textcolor{stringliteral}{'5 - 0, whatever.'}
+3 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(5, 0, \textcolor{stringliteral}{'oops.'})
+4 Traceback (most recent call last):
+5     ...
+6 ZeroDivisionError: integer division \textcolor{keywordflow}{or} modulo by zero
+7 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(4, 1, \textcolor{stringliteral}{'got it.'})
+8 \textcolor{stringliteral}{'5 - 4, got it.'}
+9 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(23.5, 23, \textcolor{stringliteral}{'oh well.'})
+10 Traceback (most recent call last):
+11     ...
+12 AssertionError
+13 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(5, 50, \textcolor{stringliteral}{'too big.'})
+14 Traceback (most recent call last):
+15     ...
+16 ValueError
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyExceptions}

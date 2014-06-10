@@ -1,0 +1,73 @@
+\hypertarget{namespacesample__google_1_1fetch__bigtable__rows}{\section{sample\-\_\-google.\-fetch\-\_\-bigtable\-\_\-rows Namespace Reference}
+\label{namespacesample__google_1_1fetch__bigtable__rows}\index{sample\-\_\-google.\-fetch\-\_\-bigtable\-\_\-rows@{sample\-\_\-google.\-fetch\-\_\-bigtable\-\_\-rows}}
+}
+
+
+Google Python Style Guide \hyperlink{namespacesample__google_1_1_sample_class}{Sample\-Class}.  
+
+
+
+
+\subsection{Detailed Description}
+Google Python Style Guide \hyperlink{namespacesample__google_1_1_sample_class}{Sample\-Class}. This is basically as close a copy of the Python examples in the Google Python Style Guide as possible while still being valid code.
+
+\href{http://google-styleguide.googlecode.com/svn/trunk/pyguide.html?showone=Comments#CommentsFetches}{\tt http\-://google-\/styleguide.\-googlecode.\-com/svn/trunk/pyguide.\-html?showone=\-Comments\#\-Comments\-Fetches} rows from a Bigtable. \begin{DoxyVerb}Retrieves rows pertaining to the given keys from the Table instance
+represented by big_table.  Silly things may happen if
+other_silly_variable is not None.
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em big\-\_\-table} & An open Bigtable Table instance. \\
+\hline
+{\em keys} & A sequence of strings representing the key of each table row to fetch. \\
+\hline
+{\em other\-\_\-silly\-\_\-variable} & Another optional variable, that has a much longer name than the other args, and which does nothing.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dict mapping keys to the corresponding table row data fetched. Each row is represented as a tuple of strings. For example\-:
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+1 \{\textcolor{stringliteral}{'Serak'}: (\textcolor{stringliteral}{'Rigel VII'}, \textcolor{stringliteral}{'Preparer'}),
+2  \textcolor{stringliteral}{'Zim'}: (\textcolor{stringliteral}{'Irk'}, \textcolor{stringliteral}{'Invader'}),
+3  \textcolor{stringliteral}{'Lrrr'}: (\textcolor{stringliteral}{'Omicron Persei 8'}, \textcolor{stringliteral}{'Emperor'})\}
+\end{DoxyCode}
+ If a key from the keys argument is missing from the dictionary, then that row was not found in the table.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em I\-O\-Error} & An error occurred accessing the bigtable.\-Table object.\\
+\hline
+\end{DoxyExceptions}
+This is basically as close a copy of the Python examples in the Google Python Style Guide as possible while still being valid code.
+
+\href{http://google-styleguide.googlecode.com/svn/trunk/pyguide.html?showone=Comments#CommentsFetches}{\tt http\-://google-\/styleguide.\-googlecode.\-com/svn/trunk/pyguide.\-html?showone=\-Comments\#\-Comments\-Fetches} rows from a Bigtable. \begin{DoxyVerb}Retrieves rows pertaining to the given keys from the Table instance
+represented by big_table.  Silly things may happen if
+other_silly_variable is not None.
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em big\-\_\-table} & An open Bigtable Table instance. \\
+\hline
+{\em keys} & A sequence of strings representing the key of each table row to fetch. \\
+\hline
+{\em other\-\_\-silly\-\_\-variable} & Another optional variable, that has a much longer name than the other args, and which does nothing.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A dict mapping keys to the corresponding table row data fetched. Each row is represented as a tuple of strings. For example\-:
+\end{DoxyReturn}
+\{'Serak'\-: ('Rigel V\-I\-I', 'Preparer'), 'Zim'\-: ('Irk', 'Invader'), 'Lrrr'\-: ('Omicron Persei 8', 'Emperor')\}
+
+If a key from the keys argument is missing from the dictionary, then that row was not found in the table.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em I\-O\-Error} & An error occurred accessing the bigtable.\-Table object. \\
+\hline
+\end{DoxyExceptions}

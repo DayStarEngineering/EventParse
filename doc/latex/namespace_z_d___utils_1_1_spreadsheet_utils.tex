@@ -1,0 +1,171 @@
+\hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils}{\section{Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils Namespace Reference}
+\label{namespace_z_d___utils_1_1_spreadsheet_utils}\index{Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_a5ae53a4ce51fc5bd17ce4c63f0b40451}{import\-\_\-excel}
+\begin{DoxyCompactList}\small\item\em This function imports an excel spreadsheet, converts to a pandas dataframe. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_a4fdba56179861d6f42962ea9999c5c81}{import\-\_\-csv}
+\begin{DoxyCompactList}\small\item\em This function parses a C\-M\-D spreadsheet formatted as Excel spreadsheet. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_ab4c3765269b004f495a03152460ce8e3}{mask}
+\begin{DoxyCompactList}\small\item\em This function masks a dataframe, given a key-\/value pair. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_a9cf62cf70191a5772a6b9c392906f7d6}{drop\-\_\-columns}
+\begin{DoxyCompactList}\small\item\em Removes colums with names specified by input. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_ae123e9775102035a4036b15c45883130}{reformat\-\_\-column\-\_\-names}
+\begin{DoxyCompactList}\small\item\em This function is a simple utility to replace string patterns in colum names with something more helpful. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils_a9cf62cf70191a5772a6b9c392906f7d6}{\index{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}!drop\-\_\-columns@{drop\-\_\-columns}}
+\index{drop\-\_\-columns@{drop\-\_\-columns}!ZD_Utils::SpreadsheetUtils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}}
+\subsubsection[{drop\-\_\-columns}]{\setlength{\rightskip}{0pt plus 5cm}def Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils.\-drop\-\_\-columns (
+\begin{DoxyParamCaption}
+\item[{}]{dataframe, }
+\item[{}]{drop\-\_\-key = {\ttfamily \char`\"{}Unnamed\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{namespace_z_d___utils_1_1_spreadsheet_utils_a9cf62cf70191a5772a6b9c392906f7d6}
+
+
+Removes colums with names specified by input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataframe} & Pandas dataframe\\
+\hline
+{\em drop\-\_\-key} & string indicating which dataframe columns to drop\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+dataframe New dataframe with columns dropped
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 data = \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_a9cf62cf70191a5772a6b9c392906f7d6}{drop\_columns}(\textcolor{stringliteral}{"Unnamed"})
+\end{DoxyCode}
+ \hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils_a4fdba56179861d6f42962ea9999c5c81}{\index{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}!import\-\_\-csv@{import\-\_\-csv}}
+\index{import\-\_\-csv@{import\-\_\-csv}!ZD_Utils::SpreadsheetUtils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}}
+\subsubsection[{import\-\_\-csv}]{\setlength{\rightskip}{0pt plus 5cm}def Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils.\-import\-\_\-csv (
+\begin{DoxyParamCaption}
+\item[{}]{fname, }
+\item[{}]{no\-\_\-spaces = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{namespace_z_d___utils_1_1_spreadsheet_utils_a4fdba56179861d6f42962ea9999c5c81}
+
+
+This function parses a C\-M\-D spreadsheet formatted as Excel spreadsheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & String with filename and path of excel spreadsheet to open\\
+\hline
+{\em no\-\_\-spaces} & Boolean indicator to remove spaces and fill with '\-\_\-'\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+data Pandas data frame
+
+Example data = import\-\_\-csv(\char`\"{}\-C\-M\-D\-\_\-\-F\-I\-L\-E\-S/cmd\-\_\-\-Jan\-\_\-01\-\_\-2001.\-csv\char`\"{}) 
+\end{DoxyReturn}
+\hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils_a5ae53a4ce51fc5bd17ce4c63f0b40451}{\index{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}!import\-\_\-excel@{import\-\_\-excel}}
+\index{import\-\_\-excel@{import\-\_\-excel}!ZD_Utils::SpreadsheetUtils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}}
+\subsubsection[{import\-\_\-excel}]{\setlength{\rightskip}{0pt plus 5cm}def Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils.\-import\-\_\-excel (
+\begin{DoxyParamCaption}
+\item[{}]{fname, }
+\item[{}]{sheetname = {\ttfamily 'PDIR\-\_\-CMD'}, }
+\item[{}]{no\-\_\-spaces = {\ttfamily True}}
+\end{DoxyParamCaption}
+)}}\label{namespace_z_d___utils_1_1_spreadsheet_utils_a5ae53a4ce51fc5bd17ce4c63f0b40451}
+
+
+This function imports an excel spreadsheet, converts to a pandas dataframe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & String with filename and path of excel spreadsheet to open\\
+\hline
+{\em sheetname} & Name of sheet to parse. \\
+\hline
+{\em no\-\_\-spaces} & Boolean indicator to remove spaces and fill with '\-\_\-'\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+data Pandas data frame
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 data = \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_a5ae53a4ce51fc5bd17ce4c63f0b40451}{import\_excel}(\textcolor{stringliteral}{"CMD\_FILES/cmd\_Jan\_01\_2001.xls"})
+\end{DoxyCode}
+ \hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils_ab4c3765269b004f495a03152460ce8e3}{\index{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}!mask@{mask}}
+\index{mask@{mask}!ZD_Utils::SpreadsheetUtils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}}
+\subsubsection[{mask}]{\setlength{\rightskip}{0pt plus 5cm}def Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils.\-mask (
+\begin{DoxyParamCaption}
+\item[{}]{dataframe, }
+\item[{}]{key, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}}\label{namespace_z_d___utils_1_1_spreadsheet_utils_ab4c3765269b004f495a03152460ce8e3}
+
+
+This function masks a dataframe, given a key-\/value pair. 
+
+Key/\-Value pair can be a string, or number. Logic handles both N\-O\-T\-E that this works based on string.\-contains, not exact comparison. Take this into account
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataframe} & Pandas Dataframe to apply the mask on \\
+\hline
+{\em key} & \char`\"{}key\char`\"{} accessing dataframe columns \\
+\hline
+{\em value} & (string or numeric) the value you wish to mask by dataframe\mbox{[}key\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+data Masked pandas data frame
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 data = \hyperlink{namespace_z_d___utils_1_1_spreadsheet_utils_ab4c3765269b004f495a03152460ce8e3}{mask}(full\_dataframe,\textcolor{stringliteral}{"CMD\_NAME"},\textcolor{stringliteral}{"On"})
+\end{DoxyCode}
+ \hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils_ae123e9775102035a4036b15c45883130}{\index{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}!reformat\-\_\-column\-\_\-names@{reformat\-\_\-column\-\_\-names}}
+\index{reformat\-\_\-column\-\_\-names@{reformat\-\_\-column\-\_\-names}!ZD_Utils::SpreadsheetUtils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}}
+\subsubsection[{reformat\-\_\-column\-\_\-names}]{\setlength{\rightskip}{0pt plus 5cm}def Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils.\-reformat\-\_\-column\-\_\-names (
+\begin{DoxyParamCaption}
+\item[{}]{dataframe, }
+\item[{}]{replace\-\_\-this = {\ttfamily \char`\"{}~\char`\"{}}, }
+\item[{}]{with\-\_\-this = {\ttfamily \char`\"{}\-\_\-\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{namespace_z_d___utils_1_1_spreadsheet_utils_ae123e9775102035a4036b15c45883130}
+
+
+This function is a simple utility to replace string patterns in colum names with something more helpful. 
+
+By default, it replaces spaces in column names with underscores (just to make life easier)
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataframe} & A pandas dataframe\\
+\hline
+{\em replace\-\_\-this} & A string to be replaced in column names \\
+\hline
+{\em with\-\_\-this} & Replacement string when matches are found\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+dataframe New dataframe with renamed columns
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 dataframe = Parse.reformat\_column\_names(dataframe,replace\_this=\textcolor{stringliteral}{"data."},with\_this=\textcolor{stringliteral}{"data\_"})
+\end{DoxyCode}
+ 

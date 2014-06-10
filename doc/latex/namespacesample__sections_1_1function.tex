@@ -1,0 +1,72 @@
+\hypertarget{namespacesample__sections_1_1function}{\section{sample\-\_\-sections.\-function Namespace Reference}
+\label{namespacesample__sections_1_1function}\index{sample\-\_\-sections.\-function@{sample\-\_\-sections.\-function}}
+}
+
+
+Sample documentation the arbitrary section handling.  
+
+
+
+
+\subsection{Detailed Description}
+Sample documentation the arbitrary section handling. Related to issue \#7 \href{https://github.com/Feneric/doxypypy/issues/7}{\tt 1}.
+
+A simple function of two arguments. \begin{DoxyVerb}This function takes two arguments, but does absolutely nothing with them.
+However, it sends out a friendly greeting to the world.
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg1} & The first argument \\
+\hline
+{\em arg2} & The second argument\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string stating \char`\"{}\-Hello World\char`\"{}
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 >>> \hyperlink{namespacedoxypypy_1_1test_1_1sample__sections_aca57525d1a888c13df067cbe0a4b183d}{function}(1, 2)
+2 \textcolor{stringliteral}{"Hello World"}
+3 >>> \hyperlink{namespacedoxypypy_1_1test_1_1sample__sections_aca57525d1a888c13df067cbe0a4b183d}{function}(\textcolor{stringliteral}{'a'}, \textcolor{stringliteral}{'b'})
+4 \textcolor{stringliteral}{"Hello World"}
+\end{DoxyCode}
+
+
+\begin{DoxyParagraph}{Intent}
+The intent is to demonstrate sections like this one within docstrings. How they behave with multiple lines. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+And how they behave with multiple paragraphs. That contain multiple lines.
+\end{DoxyParagraph}
+Paragraphs stading by themselves without indention, should be left alone.
+
+Related to issue \#7 \href{https://github.com/Feneric/doxypypy/issues/7}{\tt 1}.
+
+A simple function of two arguments. \begin{DoxyVerb}This function takes two arguments, but does absolutely nothing with them.
+However, it sends out a friendly greeting to the world.
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg1} & The first argument \\
+\hline
+{\em arg2} & The second argument\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string stating \char`\"{}\-Hello World\char`\"{}
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Examples}
+$>$$>$$>$ function(1, 2) \char`\"{}\-Hello World\char`\"{} $>$$>$$>$ function('a', 'b') \char`\"{}\-Hello World\char`\"{}
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Intent}
+The intent is to demonstrate sections like this one within docstrings. How they behave with multiple lines. 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+And how they behave with multiple paragraphs. That contain multiple lines.
+\end{DoxyParagraph}
+Paragraphs stading by themselves without indention, should be left alone. 
