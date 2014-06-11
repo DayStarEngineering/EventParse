@@ -48,6 +48,11 @@ pName = "UniqueID.pickle"
 in_date_format = '%Y/%m/%d_%H:%M:%S.%f'
 xml_date_format = '%d-%b-%Y %H:%M:%S'
 
+# Cool way to do it all functionally! 
+# Can call with     eval(parsers[PLATFORM])(arg)
+# Just not as pretty I don't think... but more dynamic! 
+# parsers = dict((platform,func) for (platform,func) in [(platform,"parse"+platform) for platform in platforms])
+
 def getNextUniqueID():
     """Fetch the next unique ID to use in event creation. Opens a pickle, gets value,
     increments, and saves the pickle. 
@@ -69,6 +74,59 @@ def getNextUniqueID():
     return uid
 
 
+def convertTimeFormat(timestamp, input_format=in_date_format, output_format=xml_date_format, to_string=True):
+    """Converts time format to be Flexplan-compliant
+
+    Args:
+        timestamp:  String input time
+
+    Kwargs:
+        input_format:   Input format string. See http://strftime.org
+        output_format:  Output format string. See http://strftime.org
+        to_string:      Boolean, return string or datetime object
+    
+    Returns:
+        timestamp:  Reformatted time string
+
+    Example:
+        datestr = ParseEvents.convertTimeFormat(dataframe.StartTime.iloc[0])
+        datestr_local = ParseEvents.convertTimeFormat(dataframe.StartTime.iloc[0],output_format='%c')
+        dateval = ParseEvents.convertTimeFormat(dataframe.StartTime.iloc[0],to_string=False)
+    """
+    if to_string is True:
+        return datetime.strftime(datetime.strptime(timestamp,input_format),output_format)
+    else:
+        return datetime.strptime(timestamp,input_format)
+
+#http://norwied.wordpress.com/2013/08/27/307/
+# DONT REALLY UNDERSTAND THIS. IT MUST BE CALLED IN YOUR MODULE TO WORK...
+def indent(elem, level=0):
+    """ Makes ElementTree XML object pretty for printing
+
+    Args:
+        elem:  object to prettify
+
+    Kwargs:
+        level: Internally used
+
+    Example:
+        root = ET.ElementTree("SomeFile.xml")
+        XML_Utils.indent(root)
+    """
+    i = "\n" + level*"    "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "    "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            indent(elem, level+1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
 def generateXMLHeader(df,filename):
     """Generates an XML handle with header information filled in
 
@@ -89,18 +147,175 @@ def generateXMLHeader(df,filename):
 
     ###### Create all of the header elements
     fname_elem = ET.SubElement(root,"FILENAME")
-    fname_elem.text = string.replace(filename, "csv", "xml")
+    fname_elem.text = string.replace(filename, "csv", "xml").split('/')[-1]
     date_elem = ET.SubElement(root,"CREATION_DATE")
     date_elem.text = datetime.strftime(datetime.utcnow(),xml_date_format)
     ## Start time is the first start time in the file
-    start_elem = ET.Subelement(root,"START")
-    start_elem.text = datetime.strftime(datetime.strptime(df.iloc[0]['Start'],in_date_format),xml_date_format)
+    start_elem = ET.SubElement(root,"START")
+    start_elem.text = convertTimeFormat(df.iloc[0]['Start'])
     ## End time is the last stop time in the file
-    end_elem = ET.Subelement(root,"END")
-    end_elem.text = datetime.strftime(datetime.strptime(df.iloc[-1]['Stop'],in_date_format),xml_date_format)
+    end_elem = ET.SubElement(root,"END")
+    end_elem.text = convertTimeFormat(df.iloc[-1]['Stop'])
     ## Some unused/Empty elements 
     sve_element = ET.SubElement(root,"STATE_VECTOR_EPOCH")
     sv_element = ET.SubElement(root,"STATE_VECTOR")
+    return root
+
+
+def parseCSV(filename):
+    """Parses a CSV Event File
+
+    Args:
+        filename:   Filename of the input event file
+    
+    Returns:
+        root:   Etree XML root object. Manipulate later. 
+        df:     Pandas Dataframe of the Data
+    Example:
+        root,df = ParseEvents.parseCSV("filename.csv")
+    """
+    ###### Define Dynamic Parsers Function Caller
+    platforms = ["COMM","ECLIPSE","MANEUVER","MEMORY","PHOTO"]
+    funcs = [parseCOMM, parseECLIPSE, parseMANEUVER, parseMEMORY, parsePHOTO]
+    parsers = dict(zip(platforms,funcs))
+
+    ###### Load The dataframe
+    df = zsheet.import_csv(filename, header=0)
+
+    ###### Generate header information 
+    root = generateXMLHeader(df,filename)
+
+    ###### Parse dataframe to add individual events
+    csv_filename = filename.split('/')[-1]
+    platform = csv_filename.split('_')[0]
+    ## Dynamically call function from dictionary
+    root = parsers[platform](df,root,csv_filename)
+
+    ###### Write the output XML
+    indent(root)
+    xml_tree = ET.ElementTree(root)
+    out_filename = 'Output/' + string.replace(csv_filename,'csv','xml')
+    xml_tree.write(out_filename, xml_declaration=True, method="xml")
+    return root,df
+
+def createEventElement(xmlroot,entities,subname='Event', override_keys=None):
+
+    subEl = ET.SubElement(xmlroot,subname)
+
+    ######Can loop by keys since I made the input dictionary keys match XML fields!
+    if override_keys is None:
+        keys = entities.keys()
+    else:
+        keys = override_keys
+    for key in keys: 
+        val = entities[key]
+        if val is not None:
+            if type(val) is dict:
+                subEl = createEventElement(subEl,val,subname=key)
+            elif type(val) is str:
+                subelement = ET.SubElement(subEl,key)
+                subelement.text = entities[key]
+            elif type(val) is list:
+                for v in val:
+                    if type(v) is dict:
+                        subEl = createEventElement(subEl,v,subname=key)
+                    elif type(v) is str:
+                        subelement = ET.SubElement(subEl,key)
+                        subelement.text = v
+            else:
+                raise error('Uh Oh, Need to write a STRING type to XML!')
+    """
+    Basically does this whole process, just recursively and awesomely
+
+    ###### Form Start Time Element
+    utc_start_elem = ET.SubElement(event,'UTC_Start_Time')
+    if entities['UTC_Start_Time']: utc_start_elem.text = entities['UTC_Start_Time']
+
+    ###### Form Duration Element (in miliseconds)
+    utc_start_elem = ET.SubElement(event,'Duration')
+    utc_start_elem.text = entities['Duration']
+
+    ###### Form Unique ID Element
+    utc_start_elem = ET.SubElement(event,'Unique_Id')
+    utc_start_elem.text = entities['Unique_Id']
+
+    ###### Form Event Description Element 
+    utc_start_elem = ET.SubElement(event,'Event_Description')
+    utc_start_elem.text = entities['Event_Description']
+
+    ###### Form Sat Element
+    utc_start_elem = ET.SubElement(event,'Sat')
+    utc_start_elem.text = entities['Sat']
+
+    ###### Form Empty Entity element
+    entity_elem = ET.SubElement(event,'Entity')
+
+    ###### Form Event Parameters Element
+    params_elem = ET.SubElement(event,'List_of_Event_Parameters')
+
+    ###### Form Parameter Subelements
+    if entities['List_of_Event_Parameters']:
+        param_ul_elem = ET.SubElement(params_elem,'Event_Parameter')
+        dl_name_elem = ET.SubElement(param_ul_elem,'Event_Par_Name')
+        dl_name_elem.text=entities['List_of_Event_Parameters'][0][0]
+        dl_val_elem = ET.SubElement(param_ul_elem,'Event_Par_Value')
+        dl_val_elem.text = entities['List_of_Event_Parameters'][1][0]
+
+        param_dl_elem = ET.SubElement(params_elem,'Event_Parameter')
+        ul_name_elem = ET.SubElement(param_dl_elem,'Event_Par_Name')
+        ul_name_elem.text=entities['List_of_Event_Parameters'][0][1]
+        ul_val_elem = ET.SubElement(param_dl_elem,'Event_Par_Value')
+        ul_val_elem.text = entities['List_of_Event_Parameters'][1][1]
+
+    ###### Yay Finished! 
+    return xmlroot
+    """
+    return xmlroot
+
+
+def parseCOMM(dataframe, xmlroot, filename):
+    ###### Iterate over COMM dataframe (each row of events)
+    for idx,row in dataframe.iterrows():
+        utcStart =convertTimeFormat(row.Start)
+        duration = str((convertTimeFormat(row.Stop,to_string=False) - 
+                    convertTimeFormat(row.Start,to_string=False)).total_seconds()*1e3)
+        uid = str(getNextUniqueID())
+        descr = "COMM"
+        sat = row.Groups
+        param_names = ['COMM_SET_DL_RATE','COMM_SET_UL_RATE']
+        param_values = ['DL','UL']
+
+        entity_names = ['UTC_Start_Time','Duration','Unique_Id','Event_Description','Sat',
+                            'Entity','List_of_Event_Parameters']
+
+        # param_dict = dict(zip(['Event_Par_Name','Event_Par_Value'],[param_names,param_values]))
+        # event_params = {'Event_Parameter':param_dict}
+        event_params = {'Event_Parameter':[{'Event_Par_Name':param_names[i],'Event_Par_Value':param_values[i]} for i in np.arange(len(param_names))]}
+
+        entity_values = [utcStart,duration,uid,descr,sat,None,event_params]
+
+        entities = dict(zip(entity_names,entity_values))
+        xmlroot = createEventElement(xmlroot,entities,override_keys=entity_names) # Override to preserve order in xml
+        print "This is wrong? There is no specifier for NULL/UL/DL parameters"
+    return xmlroot
+        
+        
+def parseECLIPSE(dataframe, xmlroot, filename):
+    return 0
+
+def parseMANEUVER(dataframe, xmlroot, filename):
+    return 0
+
+def parseMEMORY(dataframe, xmlroot, filename):
+    return 0
+
+def parsePHOTO(dataframe, xmlroot, filename):
+    return 0
+
+
+
+
+
 
 # ------------
 # --- cmd_to_xml---
@@ -227,10 +442,6 @@ if __name__ == "__main__":
 
     data = zsheet.import_csv(fname, header=0)
 
-    u1 = getNextUniqueID()
-    u2 = getNextUniqueID()
-    print u1
-    print u2
 
 
 
