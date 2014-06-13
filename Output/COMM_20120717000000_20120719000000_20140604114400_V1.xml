@@ -1,6 +1,6 @@
 <FDF_to_FP>
     <FILENAME>COMM_20120717000000_20120719000000_20140604114400_V1.xml</FILENAME>
-    <CREATION_DATE>11-Jun-2014 18:43:42</CREATION_DATE>
+    <CREATION_DATE>13-Jun-2014 20:50:57</CREATION_DATE>
     <START>17-Jul-2012 08:12:17</START>
     <END>18-Jul-2012 14:37:33</END>
     <STATE_VECTOR_EPOCH />
@@ -8,103 +8,55 @@
     <Event>
         <UTC_Start_Time>17-Jul-2012 08:12:17</UTC_Start_Time>
         <Duration>480000.0</Duration>
-        <Unique_Id>50094</Unique_Id>
+        <Unique_Id>62884</Unique_Id>
         <Event_Description>COMM</Event_Description>
         <Sat>SAT1</Sat>
-        <List_of_Event_Parameters>
-            <Event_Parameter>
-                <Event_Par_Value>DL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_DL_RATE</Event_Par_Name>
-            </Event_Parameter>
-            <Event_Parameter>
-                <Event_Par_Value>UL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_UL_RATE</Event_Par_Name>
-            </Event_Parameter>
-        </List_of_Event_Parameters>
+        <Entity />
+        <List_of_Event_Parameters />
     </Event>
     <Event>
         <UTC_Start_Time>17-Jul-2012 09:57:22</UTC_Start_Time>
         <Duration>480000.0</Duration>
-        <Unique_Id>50095</Unique_Id>
+        <Unique_Id>62885</Unique_Id>
         <Event_Description>COMM</Event_Description>
         <Sat>SAT1</Sat>
-        <List_of_Event_Parameters>
-            <Event_Parameter>
-                <Event_Par_Value>DL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_DL_RATE</Event_Par_Name>
-            </Event_Parameter>
-            <Event_Parameter>
-                <Event_Par_Value>UL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_UL_RATE</Event_Par_Name>
-            </Event_Parameter>
-        </List_of_Event_Parameters>
+        <Entity />
+        <List_of_Event_Parameters />
     </Event>
     <Event>
         <UTC_Start_Time>17-Jul-2012 11:43:08</UTC_Start_Time>
         <Duration>480000.0</Duration>
-        <Unique_Id>50096</Unique_Id>
+        <Unique_Id>62886</Unique_Id>
         <Event_Description>COMM</Event_Description>
         <Sat>SAT1</Sat>
-        <List_of_Event_Parameters>
-            <Event_Parameter>
-                <Event_Par_Value>DL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_DL_RATE</Event_Par_Name>
-            </Event_Parameter>
-            <Event_Parameter>
-                <Event_Par_Value>UL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_UL_RATE</Event_Par_Name>
-            </Event_Parameter>
-        </List_of_Event_Parameters>
+        <Entity />
+        <List_of_Event_Parameters />
     </Event>
     <Event>
         <UTC_Start_Time>18-Jul-2012 09:09:54</UTC_Start_Time>
         <Duration>480000.0</Duration>
-        <Unique_Id>50097</Unique_Id>
+        <Unique_Id>62887</Unique_Id>
         <Event_Description>COMM</Event_Description>
         <Sat>SAT1</Sat>
-        <List_of_Event_Parameters>
-            <Event_Parameter>
-                <Event_Par_Value>DL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_DL_RATE</Event_Par_Name>
-            </Event_Parameter>
-            <Event_Parameter>
-                <Event_Par_Value>UL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_UL_RATE</Event_Par_Name>
-            </Event_Parameter>
-        </List_of_Event_Parameters>
+        <Entity />
+        <List_of_Event_Parameters />
     </Event>
     <Event>
         <UTC_Start_Time>18-Jul-2012 10:55:35</UTC_Start_Time>
         <Duration>480000.0</Duration>
-        <Unique_Id>50098</Unique_Id>
+        <Unique_Id>62888</Unique_Id>
         <Event_Description>COMM</Event_Description>
         <Sat>SAT1</Sat>
-        <List_of_Event_Parameters>
-            <Event_Parameter>
-                <Event_Par_Value>DL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_DL_RATE</Event_Par_Name>
-            </Event_Parameter>
-            <Event_Parameter>
-                <Event_Par_Value>UL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_UL_RATE</Event_Par_Name>
-            </Event_Parameter>
-        </List_of_Event_Parameters>
+        <Entity />
+        <List_of_Event_Parameters />
     </Event>
     <Event>
         <UTC_Start_Time>18-Jul-2012 14:29:33</UTC_Start_Time>
         <Duration>480000.0</Duration>
-        <Unique_Id>50099</Unique_Id>
+        <Unique_Id>62889</Unique_Id>
         <Event_Description>COMM</Event_Description>
         <Sat>SAT1</Sat>
-        <List_of_Event_Parameters>
-            <Event_Parameter>
-                <Event_Par_Value>DL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_DL_RATE</Event_Par_Name>
-            </Event_Parameter>
-            <Event_Parameter>
-                <Event_Par_Value>UL</Event_Par_Value>
-                <Event_Par_Name>COMM_SET_UL_RATE</Event_Par_Name>
-            </Event_Parameter>
-        </List_of_Event_Parameters>
+        <Entity />
+        <List_of_Event_Parameters />
     </Event>
 </FDF_to_FP>
