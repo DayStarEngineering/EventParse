@@ -1,5 +1,20 @@
 # Doxyfile 1.8.6
 
+# *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+# THIS FILE ASSUMES YOU HAVE DOXYPYPY SETUP!
+# https://github.com/Feneric/doxypypy
+#
+# I PUT THE DOXYPYPY FILE IN MY HOME DIRECTORY AND ADDED IT TO THE PYTHON PATH 
+# IN ORDER TO WORK:
+#
+# IN .zshrc
+# 	# To put doxypypy in my path
+#	#https://github.com/Feneric/doxypypy
+#	export PYTHONPATH=$PYTHONPATH:~/.zachrc/Files/doxypypy
+#	export PATH=$PATH:~/.zachrc/Files/EXECUTABLES
+#
+# *^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^
+
 # This file describes the settings to be used by the documentation system
 # doxygen (www.doxygen.org) for a project.
 #

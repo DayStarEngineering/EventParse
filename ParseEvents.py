@@ -21,7 +21,9 @@ into Flexplan-compliant XML will be generated.
 
 Have fun! 
 
-@todos Get it to work...
+@todos 
+    *Rework the getPairedEventFiles() method, kinda clugy now.
+    *Integrate simpler row parser, lots of repeated code within parse`EVENT` methods. Should be quick 
 """
 
 # -------------------------
@@ -30,7 +32,7 @@ Have fun!
 import pandas as pd
 import sys as sys
 import numpy as np
-import os, string, pickle, fnmatch
+import os, string, pickle, fnmatch, operator
 from datetime import datetime
 import xml.etree.cElementTree as ET  # Great XLM library.
 # Easy tutorial http://stackoverflow.com/questions/3605680/creating-a-simple-xml-file-using-python
@@ -40,20 +42,14 @@ from ZD_Utils import XMLUtils as zxml
 """
 Global Variables
 @param pname:  Pickle filename storing unique ID incrementor 
-@param in_date_format:  Input date format of string in CSV
+@param typical_in_format:  Input date format of string in CSV
 @param xml_date_format:  Output date format of string for XML
 """
 pName = "UniqueID.pickle"
 ## For datetime package. Use http://strftime.org/ for reference
-in_date_format = '%Y/%m/%d_%H:%M:%S.%f'
 xml_date_format = '%d-%b-%Y %H:%M:%S'
-
 typical_in_format = '%d %b %Y %H:%M:%S.%f'
 
-# Cool way to do it all functionally! 
-# Can call with     eval(parsers[PLATFORM])(arg)
-# Just not as pretty I don't think... but more dynamic! 
-# parsers = dict((platform,func) for (platform,func) in [(platform,"parse"+platform) for platform in platforms])
 
 def getNextUniqueID():
     """Fetch the next unique ID to use in event creation. Opens a pickle, gets value,
@@ -62,7 +58,7 @@ def getNextUniqueID():
     Returns:
         uid:   New unique ID
 
-    Example:
+    Examples:
         id = ParseEvents.getNextUniqueID()
     """
     ###### Get last used Unique ID and increment
@@ -91,13 +87,12 @@ def convertTimeFormat(timestamp, input_format=typical_in_format, output_format=x
     Returns:
         timestamp:  Reformatted time string
 
-    Example:
+    Examples:
         datestr = ParseEvents.convertTimeFormat(dataframe.StartTime.iloc[0])
         datestr_local = ParseEvents.convertTimeFormat(dataframe.StartTime.iloc[0],output_format='%c')
         dateval = ParseEvents.convertTimeFormat(dataframe.StartTime.iloc[0],to_string=False)
     """
     if from_string is True:
-        print timestamp
         return datetime.strftime(timestamp,output_format)
 
     if to_string is True:
@@ -116,7 +111,7 @@ def indent(elem, level=0):
     Kwargs:
         level: Internally used
 
-    Example:
+    Examples:
         root = ET.ElementTree("SomeFile.xml")
         XML_Utils.indent(root)
     """
@@ -145,7 +140,7 @@ def generateXMLHeader(startTime,stopTime,filename):
     Returns:
         root:   Etree XML root object. Manipulate later. 
 
-    Example:
+    Examples:
         df = pd.read_csv("filename.csv")
         root = ParseEvents.generateXMLHeader(df, "foobar.csv")
     """
@@ -168,6 +163,7 @@ def generateXMLHeader(startTime,stopTime,filename):
     sv_element = ET.SubElement(root,"STATE_VECTOR")
     return root
 
+
 def getStartStopTimes(dataframe, as_string=True, input_format=typical_in_format):
     """Finds the erliest start time and latest stop time in a dataframe
 
@@ -175,13 +171,14 @@ def getStartStopTimes(dataframe, as_string=True, input_format=typical_in_format)
         dataframe:  dataframe containing event info. Assumes 'Start' and 'Stop' column
 
     Kwargs:
-        as_string:  Return the times in a formatted string (xml format for now)
+        as_string:      Return the times in a formatted string (xml format for now)
+        input_format:   Specify input datestring format instead of using default
     
     Returns:
         startTime:   Earliest event start time
         stopTime:    Latest event stop time
 
-    Example:
+    Examples:
         df = pd.read_csv("filename.csv", names = ['Start','Stop',...])
         t1,t2 = ParseEvents.getStartStopTimes(df)
     """
@@ -197,7 +194,11 @@ def getStartStopTimes(dataframe, as_string=True, input_format=typical_in_format)
 
 
 def getPairedEventFiles(filename, cols=None):
-    """Loads event files that come in pairs (for each satellite, etc) into a single dataframe
+    """Loads event files that come in pairs (for each satellite, etc) into a single dataframe. 
+    Assumes the Start Times and Stop times will match up. I.E.
+        PHOTO_SAT1_STARTTIME_STOPTIME_**
+        is paired with:
+        PHOTO_SAT2_STARTTIME_STOPTIME_**
 
     Args:
         filename:  First filename. Assumes 'SAT1' and 'SAT2' are interchangeable in file naming convention
@@ -210,27 +211,50 @@ def getPairedEventFiles(filename, cols=None):
         df:         Combined dataframe
         combo_fn:   New filename with 'SAT*' removed. 
 
-    Example:
+    Examples:
         df = ParseEvents.getPairedEventFiles('SAT1_Event.csv')
+
+    Todo:
+        Rewrite. Logic is kinda lame, not flexible. Just had to do it quickly
     """
+    ###### Load this file no matter what
     df1 = zsheet.import_csv(filename, header=0, names=cols)
+    in_dir = filename.split('/')[0]
+    in_file = filename.split('/')[1]
+    first_sat = filename.split("/")[-1].split("_")[1]
+    df1['Sat'] = first_sat
 
-    ######  Files come in SAT1 SAT2 Pairs
-    sats = ["SAT1","SAT2"]
-    if fnmatch.fnmatch(filename,'*SAT1*'):
-        ## Swap filename
-        filename2 = string.replace(filename,'SAT1','SAT2')
-    else:
-        ## Swap filename
-        filename2 = string.replace(filename,'SAT2','SAT1')
+    ###### Try to find a matching file for the other platform
+    swapper={'SAT1':'SAT2','SAT2':'SAT1'}
+    swapsat=swapper[first_sat]
+    ## Look through files
+    files = os.listdir(in_dir)
 
-    df2 = zsheet.import_csv(filename2, header=0, names=cols)
+    ###### Extract just the [Event,Platform, Start, Stop] from filename. (More flexible for the future, can just get specific elements)
+    file_keys = [list(operator.itemgetter(0,1,2,3)(f.split('_'))) for f in os.listdir(in_dir)]
+
+    ###### See if the expected file exists
+    expected_keys = list(operator.itemgetter(0,1,2,3)(in_file.split('_')))
+    expected_keys[1] = swapsat
+
+    ## Switch to numpy arrays for logical indexing, return list of matching files
+    swapfiles = list(np.array(files)[np.array([keys==expected_keys for keys in file_keys])])
+    swapfilenames = [in_dir + '/' + f for f in swapfiles]
+
+    print "Orig filename: ", filename
+    print "match filename: ", swapfilenames
+
+    if len(swapfilenames) == 0:
+        print 'NO MATCHES FOUND FOR FILENAME:',filename
+        return df1,filename
+
+    ## Probably want to eventually loop over all matches, not for now since that shouldn't happen
+    df2 = zsheet.import_csv(swapfilenames[0], header=0, names=cols)
 
     ###### Append the two dataframes, with a satellite column added
-    sat1 = filename.split("/")[-1].split("_")[1]
-    df1['Sat'] = sat1
+    
     ## Switch sats
-    df2['Sat'] = sats[(sat1 == sats[0])-2]
+    df2['Sat'] = swapsat
 
     df = df1.append(df2).dropna()
 
@@ -248,15 +272,18 @@ def parseCSV(filename):
     Returns:
         root:   Etree XML root object. Manipulate later. 
         df:     Pandas Dataframe of the Data
-    Example:
+    Examples:
         root,df = ParseEvents.parseCSV("filename.csv")
     """
     ###### Define Dynamic Parsers Function Caller
+    # Cool way to do it all functionally! 
+    # You can also call with     eval(parsers[PLATFORM])(arg)
+    # Just not as pretty I don't think... but more dynamic! Then your parsers struct can contain string function calls,
+    #   which is nice if you don't have the function handles defined yet.
+    # parsers = dict((platform,func) for (platform,func) in [(platform,"parse"+platform) for platform in platforms])
     platforms = ["COMM","ECLIPSE","MANEUVER","MEMORY","PHOTO"]
     parseFuncs = [parseCOMM, parseECLIPSE, parseMANEUVER, parseMEMORY, parsePHOTO]
-    # reformatFuncs = [formatCOMM, formatECLIPSE, formatMANEUVER, formatMEMORY, formatPHOTO]
     parsers = dict(zip(platforms,parseFuncs))
-    # formatters = dict(zip(platforms,reformatFuncs))
 
     platform = filename.split('/')[-1].split('_')[0]
 
@@ -270,13 +297,41 @@ def parseCSV(filename):
     xml_tree.write(out_filename, xml_declaration=True, method="xml")
     return root,df
 
-def createEventElement(xmlroot,entities,subname='Event', override_keys=None):
 
+def createEventElement(xmlroot,entities,subname='Event', override_keys=None):
+    """Creates an ETree XML element. Home cooked solution to dynamically convert a 
+    dictionary of key-value pairs into xml key-value pairs. Logic to handle lists, empty
+    elements, and sub-dictionaries. File recursively calls itself, so that is cool. Won't handle really complex
+    xml forms yet.
+
+    Args:
+        xmlroot:    Etree root element uder which to append xml sub-elements. 
+        entities:   Dictionary of key-value entities. 
+
+    Kwargs:
+        subname:        Xml element under which to nest this subelement.
+        override_keys:  List of dictionary keys to use instead of those provided by the dict.keys() function. 
+        Purpose is to allow selective element usage, and order specification. the keys() method returns keys in 
+        a seemingly random order. 
+    
+    Returns:
+        No returns, modifies the Etree object in place
+
+    Examples:
+        root = ET.Element('EXAMPLE')
+        xml_entity = None
+        entity_keys = ['FOO','BAR','BRO']
+        entity_values = [1,2,{foobar:71,purpose:'worthless'}]
+        entities = dict(zip(entity_names,entity_values))
+        root = createEventElement(root,entities,override_keys=entity_names)
+        # now print or write the root element to a file...
+    """
     subEl = ET.SubElement(xmlroot,subname)
 
     ######Can loop by keys since I made the input dictionary keys match XML fields!
     if override_keys is None:
         keys = entities.keys()
+        keys.reverse()      # Quick hack to get event param order right. Rethink to pass recursive override keys
     else:
         keys = override_keys
     for key in keys: 
@@ -350,6 +405,20 @@ def createEventElement(xmlroot,entities,subname='Event', override_keys=None):
 
 
 def parseCOMM(filename):
+    """Converts COMM csv into an xml file for Flexplan ingestion
+    Intent is for this menthod to be dynamically called from `parseCSV()`
+
+    Args:
+        filename:   Filename of the input event file
+    
+    Returns:
+        root:           Etree XML root object. Manipulate later.
+        csv_filename:   Output Filename to rename xml file as
+        df:             Pandas Dataframe of the COMM Data
+    Examples:
+        root,df = ParseEvents.parseCOMM("COMM_filename.csv")
+    """
+    print "\nNow Parsing COMM file"
     comm_date = '%Y/%m/%d_%H:%M:%S.%f'
     ###### Load The dataframe
     df = zsheet.import_csv(filename, header=0).dropna()
@@ -382,7 +451,8 @@ def parseCOMM(filename):
         # event_params = {'Event_Parameter':param_dict}
         event_params = {'Event_Parameter':[{'Event_Par_Name':param_names[i],'Event_Par_Value':param_values[i]} for i in np.arange(len(param_names))]}
 
-        entity_values = [utcStart,duration,uid,descr,sat,None,None]
+        xml_entity = None
+        entity_values = [utcStart,duration,uid,descr,sat,xml_entity,event_params]
 
         entities = dict(zip(entity_names,entity_values))
         root = createEventElement(root,entities,override_keys=entity_names) # Override to preserve order in xml
@@ -394,7 +464,20 @@ def parseCOMM(filename):
         
         
 def parseECLIPSE(filename):
+    """Converts ECLIPSE csv into an xml file for Flexplan ingestion
+    Intent is for this menthod to be dynamically called from `parseCSV()`
 
+    Args:
+        filename:   Filename of the input event file
+    
+    Returns:
+        root:           Etree XML root object. Manipulate later.
+        csv_filename:   Output Filename to rename xml file as (combines the paired event files)
+        df:             Pandas Dataframe of the ECLIPSE Data
+    Examples:
+        root,df = ParseEvents.parseCOMM("ECLIPSE_filename.csv")
+    """
+    print "\nNow Parsing ECLIPSE file"
     ###### Load The dataframe
     df,combo_filename = getPairedEventFiles(filename,cols=["Start","Stop","Duration"])
 
@@ -419,7 +502,9 @@ def parseECLIPSE(filename):
                             'Entity','List_of_Event_Parameters']
         event_params = None #{'Event_Parameter':[{'Event_Par_Name':param_names[i],'Event_Par_Value':param_values[i]} for i in np.arange(len(param_names))]}
 
-        entity_values = [utcStart,duration,uid,descr,sat,None,event_params]
+        xml_entity = None
+
+        entity_values = [utcStart,duration,uid,descr,sat,xml_entity,event_params]
 
         entities = dict(zip(entity_names,entity_values))
         root = createEventElement(root,entities,override_keys=entity_names) # Override to preserve order in xml
@@ -427,158 +512,178 @@ def parseECLIPSE(filename):
     # csv_filename = string.replace(string.replace(filename.split('/')[-1],'SAT1_',''),'SAT2_','')
     return root,combo_filename,df
 
-def parseMANEUVER(dataframe, xmlroot, filename):
-    return 0
 
-def parseMEMORY(dataframe, xmlroot, filename):
-    return 0
+def parseMANEUVER(filename):
+    """Converts MANEUVER csv into an xml file for Flexplan ingestion
+    Intent is for this menthod to be dynamically called from `parseCSV()`
 
-def parsePHOTO(dataframe, xmlroot, filename):
-    return 0
-
-def formatCOMM(dataframe, filename=None):
-    return 0
-
-def formatECLIPSE(dataframe, filename=None):
-    return 0
-
-def formatMEMORY(dataframe, filename=None):
-    return 0
-
-def formatMANEUVER(dataframe, filename=None):
-    return 0
-
-def formatPHOTO(dataframe, filename=None):
-    return 0
-
-
-
-
-
-# ------------
-# --- cmd_to_xml---
-# ------------
-def event_to_xml(df_h, df_d, root, platform = "SAT2", mode='w', pretty=True):
-    """This function turns a command dataframe (split by header/data rows) into a printable XML format
-    Run: 'help(cmd_to_xml)' in interactive mode to print this statement out
-    Input:  *df_h   - Header row dataframe taken from command spreadsheet
-            *df_d   - Data rows dataframe taken from command spreadsheet. Contains Argument and format specification
-            *(filename) - if provided, write the XML output to a file given in this variable.
-            *(mode)     - The mode of the file to write xml output to. Default is 'w', change to 'a' to append
-                --NOTE I ADDED APPENDING TO THE ETREE SOURCE CODE. WON'T EXIST NORMALLY...
-    Returns:*cmd_xml    - xml Etree Object
+    Args:
+        filename:   Filename of the input event file
+    
+    Returns:
+        root:           Etree XML root object. Manipulate later.
+        csv_filename:   Output Filename to rename xml file as (combines the paired event files)
+        df:             Pandas Dataframe of the MANEUVER Data
+    Examples:
+        root,df = ParseEvents.parseCOMM("MANEUVER_filename.csv")
     """
+    print "\nNow Parsing MANEUVER file"
+    ###### Load The dataframe
+    df,combo_filename = getPairedEventFiles(filename,cols=["Target","Start","Stop","Duration"])
 
-    # Root XML Element
-    #root = ET.Element("CMD_TO_FP")
+    ###### Find Start and Stop Times
+    startTime,stopTime = getStartStopTimes(df)
 
-    command = ET.SubElement(root, "Command")
+    root = generateXMLHeader(startTime,stopTime,combo_filename)
 
-    ###### Spacecraft Element
-    sc = ET.SubElement(command, "SpacecraftID")
-    sc.text = str(platform)
+    ###### Iterate over COMM dataframe (each row of events)
+    for idx,row in df.iterrows():
+        utcStart =convertTimeFormat(row.Start)
+        duration = str((convertTimeFormat(row.Stop,to_string=False) - 
+                    convertTimeFormat(row.Start,to_string=False)).total_seconds()*1e3)
+        duration = str(row.Duration*1e3)
+        uid = str(getNextUniqueID())
+        descr = "MANEUVER"
+        sat = row.Sat
+        param_names = ["ACS_POINT"]
+        param_values = [row.Target]
 
-    ###### Command Element
-    command_name = ET.SubElement(command, "CommandName")
-    command_name.text = df_h["COMMAND_MNEMONIC"]
-    #print df_h["COMMAND_MNEMONIC"]
+        entity_names = ['UTC_Start_Time','Duration','Unique_Id','Event_Description','Sat',
+                            'Entity','List_of_Event_Parameters']
+        event_params = {'Event_Parameter':[{'Event_Par_Name':param_names[i],'Event_Par_Value':param_values[i]} for i in np.arange(len(param_names))]}
 
-    ###### Filter Element (empty for now)
-    command_filter = ET.SubElement(command, "Filter")
-    # Eventually [for r in resources...]
-    resource = ET.SubElement(command_filter, "Resource")
-    resource.set("name", "SolarBattery")
+        xml_entity = None
 
-    intervals = ET.SubElement(resource, "ConsumeInterval")
-    # Eventually [for interval in intervals...]
-    consumeStart = ET.SubElement(intervals, "ConsumeStart")
-    consumeStart.text = str(0)
-    consumeStop = ET.SubElement(intervals, "ConsumeStop")
-    consumeStop.text = str(0)
+        entity_values = [utcStart,duration,uid,descr,sat,xml_entity,event_params]
 
-    ###### Must have a command argument
-    commandArgument = ET.SubElement(command, "CommandArgument")
-
-
-
-
-
-
-    ## Split into arguments
-    #Get row indices of unique arguments
-    arg_rows = np.array(df_d.groupby("ARG_DESCRIPTION").groups.values()).squeeze()
-    if arg_rows.size > 0:
-
-        ###### Command Argument Elements
+        entities = dict(zip(entity_names,entity_values))
+        root = createEventElement(root,entities,override_keys=entity_names) # Override to preserve order in xml
         
-        arg_rows.sort(axis=0)                       # Sort to be ascending  [30,20,10] ==> [10,20,30]
-        # Need to do this in a dumb way because single element numpy arrays can't be accessed with arg_rows[0]
-        # http://stackoverflow.com/questions/9814226/error-extracting-element-from-an-array-python
-        arg_rows = np.append(arg_rows, -1)  # Append -1 to make indexing easier (have to re-set it in a minute)
-        arg_rows = np.subtract(arg_rows, arg_rows[0])  # Start index at 0, relative indexing of dataframe ==>[0,10,20]
-        arg_rows[-1] = df_d.shape[0]
+    # csv_filename = string.replace(string.replace(filename.split('/')[-1],'SAT1_',''),'SAT2_','')
+    return root,combo_filename,df
 
 
-        idx_start = arg_rows[0]
-        while idx_start != len(arg_rows)-1:
-            d = df_d.iloc[arg_rows[idx_start]:arg_rows[idx_start+1]]
+def parseMEMORY(filename):
+    """Converts MEMORY csv into an xml file for Flexplan ingestion
+    Intent is for this menthod to be dynamically called from `parseCSV()`
 
-            # Indiviual Agrument
-            # arg = ET.SubElement(args, "Argument")
-            # Description Max and Min Range Value
-            # desc = ET.SubElement(arg, "DESCRIPTION")
-            # desc.text = str(d["ARG_DESCRIPTION"].iget_value(0))
+    Args:
+        filename:   Filename of the input event file
+    
+    Returns:
+        root:           Etree XML root object. Manipulate later.
+        csv_filename:   Output Filename to rename xml file as (combines the paired event files)
+        df:             Pandas Dataframe of the MEMORY Data
+    Examples:
+        root,df = ParseEvents.parseCOMM("MEMORY_filename.csv")
+    """
+    print "\nNow Parsing MEMORY file"
+    ###### Load The dataframe
+    df,combo_filename = getPairedEventFiles(filename,cols=["Start","Stop","Duration"])
 
-            # # CHECK FOR NAN!!!
-            # if pd.isnull(d["ARG_DATA_RANGE_LOW"].iget_value(0)) == False:
-            #     min_val = ET.SubElement(arg, "MIN_VALUE")
-            #     min_val.text = str(d["ARG_DATA_RANGE_LOW"].iget_value(0))
+    ###### Find Start and Stop Times
+    startTime,stopTime = getStartStopTimes(df)
 
-            # if pd.isnull(d["ARG_DATA_RANGE_HIGH"].iget_value(0)) == False:
-            #     max_val = ET.SubElement(arg, "MAX_VALUE")
-            #     max_val.text = str(d["ARG_DATA_RANGE_HIGH"].iget_value(0))
+    root = generateXMLHeader(startTime,stopTime,combo_filename)
 
-            # Mnemonics (Arguments)
-            # Get dataframe of non-null memonic rows
-            mnemonics = d.ARG_MNEMONIC[pd.notnull(d.ARG_MNEMONIC)]
-            values = d.ARG_MNEMONIC_VALUE
-            values = values[pd.notnull(values)]
+    ###### Iterate over COMM dataframe (each row of events)
+    for idx,row in df.iterrows():
+        utcStart =convertTimeFormat(row.Start)
+        duration = str((convertTimeFormat(row.Stop,to_string=False) - 
+                    convertTimeFormat(row.Start,to_string=False)).total_seconds()*1e3)
+        duration = str(row.Duration*1e3)
+        uid = str(getNextUniqueID())
+        descr = "MEMORY"
+        sat = row.Sat
+        param_names = None
+        param_values = None
 
-            if len(values) > 0:
-                for row_idx in range(len(values)):
-                    # arg = ET.SubElement(command, "CommandArgument")
-                    arg = ET.SubElement(commandArgument, "Argument")
-                    # name, type, value are not subelements, but attributes
-                    arg.set("name", str(mnemonics.iloc[row_idx]))
-                    arg.set("type", "DOUBLE")
-                    arg.set("value", str(values.iloc[row_idx]))
-                    # mem_d = ET.SubElement(mem, "name")
-                    # mem_d.text = str(mnemonics.iloc[row_idx])
+        entity_names = ['UTC_Start_Time','Duration','Unique_Id','Event_Description','Sat',
+                            'Entity','List_of_Event_Parameters']
+        event_params = None 
 
-                    # mem_t = ET.SubElement(mem, "type")
-                    # mem_t.text = "DOUBLE"
+        xml_entity = None
 
-                    # mem_v = ET.SubElement(mem, "value")
-                    # mem_v.text = str(values.iloc[row_idx])
-            idx_start += 1
+        entity_values = [utcStart,duration,uid,descr,sat,xml_entity,event_params]
 
-    ###### Write xml or return
-    if pretty:
-        indent(root)
-
-    return root
+        entities = dict(zip(entity_names,entity_values))
+        root = createEventElement(root,entities,override_keys=entity_names) # Override to preserve order in xml
+        
+    # csv_filename = string.replace(string.replace(filename.split('/')[-1],'SAT1_',''),'SAT2_','')
+    return root,combo_filename,df
 
 
+def parsePHOTO(filename):
+    """Converts PHOTO csv into an xml file for Flexplan ingestion
+    Intent is for this menthod to be dynamically called from `parseCSV()`
+
+    Args:
+        filename:   Filename of the input event file
+    
+    Returns:
+        A pluthera of things! 
+
+        root:           Etree XML root object. Manipulate later.
+        csv_filename:   Output Filename to rename xml file as (combines the paired event files)
+        df:             Pandas Dataframe of the PHOTO Data
+
+    Examples:
+        root,df = ParseEvents.parseCOMM("PHOTO_filename.csv")
+    """
+    print "\nNow Parsing PHOTO file"
+    ###### Load The dataframe
+    df,combo_filename = getPairedEventFiles(filename,cols=["Start","Stop","Duration"])
+
+    ###### Find Start and Stop Times
+    startTime,stopTime = getStartStopTimes(df)
+
+    root = generateXMLHeader(startTime,stopTime,combo_filename)
+
+    ###### Iterate over COMM dataframe (each row of events)
+    for idx,row in df.iterrows():
+        utcStart =convertTimeFormat(row.Start)
+        duration = str((convertTimeFormat(row.Stop,to_string=False) - 
+                    convertTimeFormat(row.Start,to_string=False)).total_seconds()*1e3)
+        duration = str(row.Duration*1e3)
+        uid = str(getNextUniqueID())
+        descr = "PHOTO"
+        sat = row.Sat
+        param_names = None
+        param_values = None
+
+        entity_names = ['UTC_Start_Time','Duration','Unique_Id','Event_Description','Sat',
+                            'Entity','List_of_Event_Parameters']
+        event_params = None 
+
+        xml_entity = None
+
+        entity_values = [utcStart,duration,uid,descr,sat,xml_entity,event_params]
+
+        entities = dict(zip(entity_names,entity_values))
+        root = createEventElement(root,entities,override_keys=entity_names) # Override to preserve order in xml
+        
+    # csv_filename = string.replace(string.replace(filename.split('/')[-1],'SAT1_',''),'SAT2_','')
+    return root,combo_filename,df
 
 
 if __name__ == "__main__":
+    """
+    Main method. Either call with a filename argument, or without any to parse all of the event types in the Input Folder
+
+    See help documentation automatically generated with doxygen in the doc subfolder.
+    """
     # If no arguments
     if len( sys.argv ) < 2:
-        fname = "Input/COMM_20120717000000_20120719000000_20140604114400_V1.csv"
+        fnames = ['Input/COMM_20120717000000_20120719000000_20140604114400_V1.csv',
+                  'Input/ECLIPSE_SAT1_20140704000000_20140711000000_20140604123800_V1.csv',
+                  'Input/MANEUVER_SAT1_20140704000000_20140711000000_20140604124700_V1.csv',
+                  'Input/MEMORY_SAT2_20140704000000_20140711000000_20140604124400_V1.csv',
+                  'Input/PHOTO_SAT1_20140704000000_20140711000000_20140604124500_V1.csv'
+                  ]
     else:
-        fname = sys.argv[1]
+        fnames = [sys.argv[1]]
 
-    data = zsheet.import_csv(fname, header=0)
+    [parseCSV(fname) for fname in fnames] 
 
     
 

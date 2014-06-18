@@ -1,0 +1,26 @@
+<FDF_to_FP>
+    <FILENAME>MEMORY_20140704000000_20140711000000_20140604124400_V1.xml</FILENAME>
+    <CREATION_DATE>18-Jun-2014 17:49:17</CREATION_DATE>
+    <START>04-Jul-2014 00:58:19</START>
+    <END>04-Jul-2014 00:58:27</END>
+    <STATE_VECTOR_EPOCH />
+    <STATE_VECTOR />
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 00:58:19</UTC_Start_Time>
+        <Duration>8561.0</Duration>
+        <Unique_Id>68683</Unique_Id>
+        <Event_Description>MEMORY</Event_Description>
+        <Sat>SAT2</Sat>
+        <Entity />
+        <List_of_Event_Parameters />
+    </Event>
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 00:58:19</UTC_Start_Time>
+        <Duration>8561.0</Duration>
+        <Unique_Id>68684</Unique_Id>
+        <Event_Description>MEMORY</Event_Description>
+        <Sat>SAT1</Sat>
+        <Entity />
+        <List_of_Event_Parameters />
+    </Event>
+</FDF_to_FP>

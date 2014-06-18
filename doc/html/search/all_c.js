@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['name',['name',['../namespacesetup.html#a61de3710bf6c9d78c0afa352263f8b09',1,'setup']]],
-  ['newstylesample',['NewStyleSample',['../classdoxypypy_1_1test_1_1sample__privacy_1_1_new_style_sample.html',1,'doxypypy::test::sample_privacy']]]
+  ['spreadsheetutils',['SpreadsheetUtils',['../namespace_z_d___utils_1_1_spreadsheet_utils.html',1,'ZD_Utils']]],
+  ['xmlutils',['XMLUtils',['../namespace_z_d___utils_1_1_x_m_l_utils.html',1,'ZD_Utils']]],
+  ['zd_5futils',['ZD_Utils',['../namespace_z_d___utils.html',1,'']]]
 ];

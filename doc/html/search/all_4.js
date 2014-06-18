@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['mask',['mask',['../namespace_z_d___utils_1_1_spreadsheet_utils.html#ab4c3765269b004f495a03152460ce8e3',1,'ZD_Utils::SpreadsheetUtils']]],
-  ['myfunction',['myfunction',['../namespace_parse_events.html#a4c8c7252291582e8a3a4e503a5fbfae8',1,'ParseEvents']]]
+  ['generatexmlheader',['generateXMLHeader',['../namespace_parse_events.html#a99d337e52231b2739760ef0e22ea1bee',1,'ParseEvents']]],
+  ['getnextuniqueid',['getNextUniqueID',['../namespace_parse_events.html#acf5416340b8836bf73b37db365c2cca9',1,'ParseEvents']]],
+  ['getpairedeventfiles',['getPairedEventFiles',['../namespace_parse_events.html#ac657eb05f8f6dad011f36a1b43ddc5a0',1,'ParseEvents']]],
+  ['getstartstoptimes',['getStartStopTimes',['../namespace_parse_events.html#a0b1fed420ddaf2125e2dc9cb87180116',1,'ParseEvents']]]
 ];

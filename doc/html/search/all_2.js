@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['event_5fto_5fxml',['event_to_xml',['../namespace_parse_events.html#ac0f0207d1a304ffa7539b8c287aa682b',1,'ParseEvents']]]
+  ['drop_5fcolumns',['drop_columns',['../namespace_z_d___utils_1_1_spreadsheet_utils.html#a9cf62cf70191a5772a6b9c392906f7d6',1,'ZD_Utils::SpreadsheetUtils']]]
 ];

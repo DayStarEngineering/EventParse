@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('namespace_z_d___utils_1_1_spreadsheet_
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -186,7 +186,19 @@ dataframe New dataframe with columns dropped</dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>no_spaces</em> = <code>True</code>&#160;</td>
+          <td class="paramname"><em>no_spaces</em> = <code>True</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>header</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>names</em> = <code>None</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,15 +212,17 @@ dataframe New dataframe with columns dropped</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fname</td><td>String with filename and path of excel spreadsheet to open</td></tr>
-    <tr><td class="paramname">no_spaces</td><td>Boolean indicator to remove spaces and fill with '_'</td></tr>
+    <tr><td class="paramname">no_spaces</td><td>Boolean indicator to remove spaces and fill with '_' </td></tr>
+    <tr><td class="paramname">header</td><td>Number of header lines to ignore </td></tr>
+    <tr><td class="paramname">names</td><td>Override column names</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd>
 <dd>
-data Pandas data frame</dd>
-<dd>
-Example data = import_csv("CMD_FILES/cmd_Jan_01_2001.csv") </dd></dl>
+data Pandas data frame</dd></dl>
+<p><b>Examples</b> </p>
+<div class="fragment"></div><!-- fragment --><p> data = import_csv("CMD_FILES/cmd_Jan_01_2001.csv")  </p>
 
 </div>
 </div>
@@ -361,7 +375,7 @@ dataframe New dataframe with renamed columns</dd></dl>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_z_d___utils.html">ZD_Utils</a></li><li class="navelem"><a class="el" href="namespace_z_d___utils_1_1_spreadsheet_utils.html">SpreadsheetUtils</a></li>
-    <li class="footer">Generated on Tue Jun 10 2014 12:10:23 for StartEnd by
+    <li class="footer">Generated on Wed Jun 18 2014 12:14:32 for StartEnd by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

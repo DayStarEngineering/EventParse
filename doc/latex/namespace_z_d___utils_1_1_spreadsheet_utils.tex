@@ -50,7 +50,9 @@ dataframe New dataframe with columns dropped
 \subsubsection[{import\-\_\-csv}]{\setlength{\rightskip}{0pt plus 5cm}def Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils.\-import\-\_\-csv (
 \begin{DoxyParamCaption}
 \item[{}]{fname, }
-\item[{}]{no\-\_\-spaces = {\ttfamily True}}
+\item[{}]{no\-\_\-spaces = {\ttfamily True}, }
+\item[{}]{header = {\ttfamily 1}, }
+\item[{}]{names = {\ttfamily None}}
 \end{DoxyParamCaption}
 )}}\label{namespace_z_d___utils_1_1_spreadsheet_utils_a4fdba56179861d6f42962ea9999c5c81}
 
@@ -61,17 +63,22 @@ This function parses a C\-M\-D spreadsheet formatted as Excel spreadsheet.
 \begin{DoxyParams}{Parameters}
 {\em fname} & String with filename and path of excel spreadsheet to open\\
 \hline
-{\em no\-\_\-spaces} & Boolean indicator to remove spaces and fill with '\-\_\-'\\
+{\em no\-\_\-spaces} & Boolean indicator to remove spaces and fill with '\-\_\-' \\
+\hline
+{\em header} & Number of header lines to ignore \\
+\hline
+{\em names} & Override column names\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 
 
 data Pandas data frame
-
-Example data = import\-\_\-csv(\char`\"{}\-C\-M\-D\-\_\-\-F\-I\-L\-E\-S/cmd\-\_\-\-Jan\-\_\-01\-\_\-2001.\-csv\char`\"{}) 
 \end{DoxyReturn}
-\hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils_a5ae53a4ce51fc5bd17ce4c63f0b40451}{\index{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}!import\-\_\-excel@{import\-\_\-excel}}
+{\bfseries Examples} 
+\begin{DoxyCode}
+\end{DoxyCode}
+ data = import\-\_\-csv(\char`\"{}\-C\-M\-D\-\_\-\-F\-I\-L\-E\-S/cmd\-\_\-\-Jan\-\_\-01\-\_\-2001.\-csv\char`\"{})  \hypertarget{namespace_z_d___utils_1_1_spreadsheet_utils_a5ae53a4ce51fc5bd17ce4c63f0b40451}{\index{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}!import\-\_\-excel@{import\-\_\-excel}}
 \index{import\-\_\-excel@{import\-\_\-excel}!ZD_Utils::SpreadsheetUtils@{Z\-D\-\_\-\-Utils\-::\-Spreadsheet\-Utils}}
 \subsubsection[{import\-\_\-excel}]{\setlength{\rightskip}{0pt plus 5cm}def Z\-D\-\_\-\-Utils.\-Spreadsheet\-Utils.\-import\-\_\-excel (
 \begin{DoxyParamCaption}

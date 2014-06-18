@@ -7,10 +7,11 @@
 
 var indexSectionsWithContent =
 {
-  0: "_deimprsxz",
+  0: "_cdfgimprstxz",
   1: "pz",
-  2: "_psx",
-  3: "deimr"
+  2: "_prsx",
+  3: "cdgimpr",
+  4: "fptx"
 };
 
 var indexSectionNames =
@@ -18,7 +19,8 @@ var indexSectionNames =
   0: "all",
   1: "namespaces",
   2: "files",
-  3: "functions"
+  3: "functions",
+  4: "variables"
 };
 
 function convertToId(search)

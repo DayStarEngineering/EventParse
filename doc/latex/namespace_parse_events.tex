@@ -4,81 +4,471 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}
-\begin{DoxyCompactList}\small\item\em Does nothing more than demonstrate syntax. \end{DoxyCompactList}\item 
-def \hyperlink{namespace_parse_events_ac0f0207d1a304ffa7539b8c287aa682b}{event\-\_\-to\-\_\-xml}
-\begin{DoxyCompactList}\small\item\em This function turns a command dataframe (split by header/data rows) into a printable X\-M\-L format Run 'help(cmd\-\_\-to\-\_\-xml)' in interactive mode to print this statement out Input $\ast$df\-\_\-h -\/ Header row dataframe taken from command spreadsheet $\ast$df\-\_\-d -\/ Data rows dataframe taken from command spreadsheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+def \hyperlink{namespace_parse_events_acf5416340b8836bf73b37db365c2cca9}{get\-Next\-Unique\-I\-D}
+\begin{DoxyCompactList}\small\item\em Fetch the next unique I\-D to use in event creation. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_ac1c84c086b277fca088823a8538c21ba}{convert\-Time\-Format}
+\begin{DoxyCompactList}\small\item\em Converts time format to be Flexplan-\/compliant. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_ab2c3d02a348ce446c259a8d2f566a85a}{indent}
+\begin{DoxyCompactList}\small\item\em Makes Element\-Tree X\-M\-L object pretty for printing. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a99d337e52231b2739760ef0e22ea1bee}{generate\-X\-M\-L\-Header}
+\begin{DoxyCompactList}\small\item\em Generates an X\-M\-L handle with header information filled in. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a0b1fed420ddaf2125e2dc9cb87180116}{get\-Start\-Stop\-Times}
+\begin{DoxyCompactList}\small\item\em Finds the erliest start time and latest stop time in a dataframe. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_ac657eb05f8f6dad011f36a1b43ddc5a0}{get\-Paired\-Event\-Files}
+\begin{DoxyCompactList}\small\item\em Loads event files that come in pairs (for each satellite, etc) into a single dataframe. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V}
+\begin{DoxyCompactList}\small\item\em Parses a C\-S\-V Event File. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a10703d4160f8f5428f3718df422e97a0}{create\-Event\-Element}
+\begin{DoxyCompactList}\small\item\em Creates an E\-Tree X\-M\-L element. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{parse\-C\-O\-M\-M}
+\begin{DoxyCompactList}\small\item\em Converts C\-O\-M\-M csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a647067642e925ceb7ca3bc61d25b5923}{parse\-E\-C\-L\-I\-P\-S\-E}
+\begin{DoxyCompactList}\small\item\em Converts E\-C\-L\-I\-P\-S\-E csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_af3991db0839e91cc5f294c8ab35bc5fb}{parse\-M\-A\-N\-E\-U\-V\-E\-R}
+\begin{DoxyCompactList}\small\item\em Converts M\-A\-N\-E\-U\-V\-E\-R csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a34df00eb119ffd8a2ffd0074a3051ccb}{parse\-M\-E\-M\-O\-R\-Y}
+\begin{DoxyCompactList}\small\item\em Converts M\-E\-M\-O\-R\-Y csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a8033c615535a06566dede5d62f72cac0}{parse\-P\-H\-O\-T\-O}
+\begin{DoxyCompactList}\small\item\em Converts P\-H\-O\-T\-O csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespace_parse_events_a8b2cf86e813095d3510145693bd3e7e1}{p\-Name} = \char`\"{}Unique\-I\-D.\-pickle\char`\"{}
+\item 
+string \hyperlink{namespace_parse_events_ad3060b0ae7817a67b335de758c4363ac}{xml\-\_\-date\-\_\-format} = '\%d-\/\%b-\/\%Y \%H\-:\%M\-:\%S'
+\begin{DoxyCompactList}\small\item\em For datetime package. \end{DoxyCompactList}\item 
+string \hyperlink{namespace_parse_events_a0bec8d6d94e659314b932dd430a34eec}{typical\-\_\-in\-\_\-format} = '\%d \%b \%Y \%H\-:\%M\-:\%S.\%f'
+\item 
+list \hyperlink{namespace_parse_events_a6718feae9a406aaacf93b9b39b2c8ff6}{fnames}
+\end{DoxyCompactItemize}
 
 
 \subsection{Function Documentation}
-\hypertarget{namespace_parse_events_ac0f0207d1a304ffa7539b8c287aa682b}{\index{Parse\-Events@{Parse\-Events}!event\-\_\-to\-\_\-xml@{event\-\_\-to\-\_\-xml}}
-\index{event\-\_\-to\-\_\-xml@{event\-\_\-to\-\_\-xml}!ParseEvents@{Parse\-Events}}
-\subsubsection[{event\-\_\-to\-\_\-xml}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-event\-\_\-to\-\_\-xml (
+\hypertarget{namespace_parse_events_ac1c84c086b277fca088823a8538c21ba}{\index{Parse\-Events@{Parse\-Events}!convert\-Time\-Format@{convert\-Time\-Format}}
+\index{convert\-Time\-Format@{convert\-Time\-Format}!ParseEvents@{Parse\-Events}}
+\subsubsection[{convert\-Time\-Format}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-convert\-Time\-Format (
 \begin{DoxyParamCaption}
-\item[{}]{df\-\_\-h, }
-\item[{}]{df\-\_\-d, }
-\item[{}]{root, }
-\item[{}]{platform = {\ttfamily \char`\"{}SAT2\char`\"{}}, }
-\item[{}]{mode = {\ttfamily 'w'}, }
-\item[{}]{pretty = {\ttfamily True}}
+\item[{}]{timestamp, }
+\item[{}]{input\-\_\-format = {\ttfamily typical\-\_\-in\-\_\-format}, }
+\item[{}]{output\-\_\-format = {\ttfamily xml\-\_\-date\-\_\-format}, }
+\item[{}]{to\-\_\-string = {\ttfamily True}, }
+\item[{}]{from\-\_\-string = {\ttfamily False}}
 \end{DoxyParamCaption}
-)}}\label{namespace_parse_events_ac0f0207d1a304ffa7539b8c287aa682b}
+)}}\label{namespace_parse_events_ac1c84c086b277fca088823a8538c21ba}
 
 
-This function turns a command dataframe (split by header/data rows) into a printable X\-M\-L format Run 'help(cmd\-\_\-to\-\_\-xml)' in interactive mode to print this statement out Input $\ast$df\-\_\-h -\/ Header row dataframe taken from command spreadsheet $\ast$df\-\_\-d -\/ Data rows dataframe taken from command spreadsheet. 
-
-Contains Argument and format specification $\ast$(filename) -\/ if provided, write the X\-M\-L output to a file given in this variable. $\ast$(mode) -\/ The mode of the file to write xml output to. Default is 'w', change to 'a' to append --N\-O\-T\-E I A\-D\-D\-E\-D A\-P\-P\-E\-N\-D\-I\-N\-G T\-O T\-H\-E E\-T\-R\-E\-E S\-O\-U\-R\-C\-E C\-O\-D\-E. W\-O\-N'T E\-X\-I\-S\-T N\-O\-R\-M\-A\-L\-L\-Y... Returns xml Etree Object \hypertarget{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{\index{Parse\-Events@{Parse\-Events}!myfunction@{myfunction}}
-\index{myfunction@{myfunction}!ParseEvents@{Parse\-Events}}
-\subsubsection[{myfunction}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-myfunction (
-\begin{DoxyParamCaption}
-\item[{}]{arg1, }
-\item[{}]{arg2, }
-\item[{}]{kwarg = {\ttfamily 'whatever.'}}
-\end{DoxyParamCaption}
-)}}\label{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}
-
-
-Does nothing more than demonstrate syntax. 
-
-This is an example of how a Pythonic human-\/readable docstring can get parsed by doxypypy and marked up with Doxygen commands as a regular input filter to Doxygen.
+Converts time format to be Flexplan-\/compliant. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em arg1} & A positional argument. \\
+{\em timestamp} & String input time\\
 \hline
-{\em arg2} & Another positional argument.\\
+{\em input\-\_\-format} & Input format string. See \href{http://strftime.org}{\tt http\-://strftime.\-org} \\
 \hline
-{\em kwarg} & A keyword argument.\\
+{\em output\-\_\-format} & Output format string. See \href{http://strftime.org}{\tt http\-://strftime.\-org} \\
+\hline
+{\em to\-\_\-string} & Boolean, return string or datetime object \\
+\hline
+{\em from\-\_\-string} & Boolean, input is already a datetime object. Returns formatted string\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A string holding the result.
-\end{DoxyReturn}
 
-\begin{DoxyExceptions}{Exceptions}
-{\em Zero\-Division\-Error} & \\
-\hline
-{\em Assertion\-Error} & \\
-\hline
-{\em Value\-Error.} & {\bfseries Examples} 
+
+timestamp Reformatted time string
+\end{DoxyReturn}
+{\bfseries Examples} 
 \begin{DoxyCode}
-1 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(2, 3)
-2 \textcolor{stringliteral}{'5 - 0, whatever.'}
-3 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(5, 0, \textcolor{stringliteral}{'oops.'})
-4 Traceback (most recent call last):
-5     ...
-6 ZeroDivisionError: integer division \textcolor{keywordflow}{or} modulo by zero
-7 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(4, 1, \textcolor{stringliteral}{'got it.'})
-8 \textcolor{stringliteral}{'5 - 4, got it.'}
-9 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(23.5, 23, \textcolor{stringliteral}{'oh well.'})
-10 Traceback (most recent call last):
-11     ...
-12 AssertionError
-13 >>> \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{myfunction}(5, 50, \textcolor{stringliteral}{'too big.'})
-14 Traceback (most recent call last):
-15     ...
-16 ValueError
+1 datestr = \hyperlink{namespace_parse_events_ac1c84c086b277fca088823a8538c21ba}{ParseEvents.convertTimeFormat}(dataframe.StartTime.iloc[0])
+2 datestr\_local = \hyperlink{namespace_parse_events_ac1c84c086b277fca088823a8538c21ba}{ParseEvents.convertTimeFormat}(dataframe.StartTime.iloc[0],
+      output\_format=\textcolor{stringliteral}{'%c'})
+3 dateval = \hyperlink{namespace_parse_events_ac1c84c086b277fca088823a8538c21ba}{ParseEvents.convertTimeFormat}(dataframe.StartTime.iloc[0],to\_string=\textcolor{keyword}{
+      False})
 \end{DoxyCode}
- \\
+ \hypertarget{namespace_parse_events_a10703d4160f8f5428f3718df422e97a0}{\index{Parse\-Events@{Parse\-Events}!create\-Event\-Element@{create\-Event\-Element}}
+\index{create\-Event\-Element@{create\-Event\-Element}!ParseEvents@{Parse\-Events}}
+\subsubsection[{create\-Event\-Element}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-create\-Event\-Element (
+\begin{DoxyParamCaption}
+\item[{}]{xmlroot, }
+\item[{}]{entities, }
+\item[{}]{subname = {\ttfamily 'Event'}, }
+\item[{}]{override\-\_\-keys = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a10703d4160f8f5428f3718df422e97a0}
+
+
+Creates an E\-Tree X\-M\-L element. 
+
+Home cooked solution to dynamically convert a dictionary of key-\/value pairs into xml key-\/value pairs. Logic to handle lists, empty elements, and sub-\/dictionaries. File recursively calls itself, so that is cool. Won't handle really complex xml forms yet.
+
+
+\begin{DoxyParams}{Parameters}
+{\em xmlroot} & Etree root element uder which to append xml sub-\/elements. \\
 \hline
-\end{DoxyExceptions}
+{\em entities} & Dictionary of key-\/value entities.\\
+\hline
+{\em subname} & Xml element under which to nest this subelement. \\
+\hline
+{\em override\-\_\-keys} & List of dictionary keys to use instead of those provided by the dict.\-keys() function. Purpose is to allow selective element usage, and order specification. the keys() method returns keys in a seemingly random order.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+No returns, modifies the Etree object in place
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 root = ET.Element(\textcolor{stringliteral}{'EXAMPLE'})
+2 xml\_entity = \textcolor{keywordtype}{None}
+3 entity\_keys = [\textcolor{stringliteral}{'FOO'},\textcolor{stringliteral}{'BAR'},\textcolor{stringliteral}{'BRO'}]
+4 entity\_values = [1,2,\{foobar:71,purpose:\textcolor{stringliteral}{'worthless'}\}]
+5 entities = dict(zip(entity\_names,entity\_values))
+6 root = \hyperlink{namespace_parse_events_a10703d4160f8f5428f3718df422e97a0}{createEventElement}(root,entities,override\_keys=entity\_names)
+7 \textcolor{comment}{# now print or write the root element to a file...}
+\end{DoxyCode}
+ \hypertarget{namespace_parse_events_a99d337e52231b2739760ef0e22ea1bee}{\index{Parse\-Events@{Parse\-Events}!generate\-X\-M\-L\-Header@{generate\-X\-M\-L\-Header}}
+\index{generate\-X\-M\-L\-Header@{generate\-X\-M\-L\-Header}!ParseEvents@{Parse\-Events}}
+\subsubsection[{generate\-X\-M\-L\-Header}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-generate\-X\-M\-L\-Header (
+\begin{DoxyParamCaption}
+\item[{}]{start\-Time, }
+\item[{}]{stop\-Time, }
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a99d337e52231b2739760ef0e22ea1bee}
+
+
+Generates an X\-M\-L handle with header information filled in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\-Time} & U\-T\-C starttime marking the start of events \\
+\hline
+{\em stop\-Time} & U\-T\-C stoptime marking the end of events \\
+\hline
+{\em filename} & Filename of the input event file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+root Etree X\-M\-L root object. Manipulate later.
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 df = pd.read\_csv(\textcolor{stringliteral}{"filename.csv"})
+2 root = \hyperlink{namespace_parse_events_a99d337e52231b2739760ef0e22ea1bee}{ParseEvents.generateXMLHeader}(df, \textcolor{stringliteral}{"foobar.csv"})
+\end{DoxyCode}
+ \hypertarget{namespace_parse_events_acf5416340b8836bf73b37db365c2cca9}{\index{Parse\-Events@{Parse\-Events}!get\-Next\-Unique\-I\-D@{get\-Next\-Unique\-I\-D}}
+\index{get\-Next\-Unique\-I\-D@{get\-Next\-Unique\-I\-D}!ParseEvents@{Parse\-Events}}
+\subsubsection[{get\-Next\-Unique\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-get\-Next\-Unique\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_acf5416340b8836bf73b37db365c2cca9}
+
+
+Fetch the next unique I\-D to use in event creation. 
+
+Opens a pickle, gets value, increments, and saves the pickle.
+
+\begin{DoxyReturn}{Returns}
+
+
+uid New unique I\-D
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 id = \hyperlink{namespace_parse_events_acf5416340b8836bf73b37db365c2cca9}{ParseEvents.getNextUniqueID}()
+\end{DoxyCode}
+ \hypertarget{namespace_parse_events_ac657eb05f8f6dad011f36a1b43ddc5a0}{\index{Parse\-Events@{Parse\-Events}!get\-Paired\-Event\-Files@{get\-Paired\-Event\-Files}}
+\index{get\-Paired\-Event\-Files@{get\-Paired\-Event\-Files}!ParseEvents@{Parse\-Events}}
+\subsubsection[{get\-Paired\-Event\-Files}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-get\-Paired\-Event\-Files (
+\begin{DoxyParamCaption}
+\item[{}]{filename, }
+\item[{}]{cols = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_ac657eb05f8f6dad011f36a1b43ddc5a0}
+
+
+Loads event files that come in pairs (for each satellite, etc) into a single dataframe. 
+
+Assumes the Start Times and Stop times will match up. I.\-E. P\-H\-O\-T\-O\-\_\-\-S\-A\-T1\-\_\-\-S\-T\-A\-R\-T\-T\-I\-M\-E\-\_\-\-S\-T\-O\-P\-T\-I\-M\-E\-\_\-$\ast$$\ast$ is paired with\-: P\-H\-O\-T\-O\-\_\-\-S\-A\-T2\-\_\-\-S\-T\-A\-R\-T\-T\-I\-M\-E\-\_\-\-S\-T\-O\-P\-T\-I\-M\-E\-\_\-$\ast$$\ast$
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & First filename. Assumes 'S\-A\-T1' and 'S\-A\-T2' are interchangeable in file naming convention Will work on either filename\\
+\hline
+{\em cols} & override column names as list\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+df Combined dataframe 
+
+combo\-\_\-fn New filename with 'S\-A\-T$\ast$' removed.
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 df = \hyperlink{namespace_parse_events_ac657eb05f8f6dad011f36a1b43ddc5a0}{ParseEvents.getPairedEventFiles}(\textcolor{stringliteral}{'SAT1\_Event.csv'})
+\end{DoxyCode}
+
+
+\begin{DoxyParagraph}{Todo}
+Rewrite. Logic is kinda lame, not flexible. Just had to do it quickly 
+\end{DoxyParagraph}
+\hypertarget{namespace_parse_events_a0b1fed420ddaf2125e2dc9cb87180116}{\index{Parse\-Events@{Parse\-Events}!get\-Start\-Stop\-Times@{get\-Start\-Stop\-Times}}
+\index{get\-Start\-Stop\-Times@{get\-Start\-Stop\-Times}!ParseEvents@{Parse\-Events}}
+\subsubsection[{get\-Start\-Stop\-Times}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-get\-Start\-Stop\-Times (
+\begin{DoxyParamCaption}
+\item[{}]{dataframe, }
+\item[{}]{as\-\_\-string = {\ttfamily True}, }
+\item[{}]{input\-\_\-format = {\ttfamily typical\-\_\-in\-\_\-format}}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a0b1fed420ddaf2125e2dc9cb87180116}
+
+
+Finds the erliest start time and latest stop time in a dataframe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dataframe} & dataframe containing event info. Assumes 'Start' and 'Stop' column\\
+\hline
+{\em as\-\_\-string} & Return the times in a formatted string (xml format for now) \\
+\hline
+{\em input\-\_\-format} & Specify input datestring format instead of using default\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+start\-Time Earliest event start time 
+
+stop\-Time Latest event stop time
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+\end{DoxyCode}
+ df = pd.\-read\-\_\-csv(\char`\"{}filename.\-csv\char`\"{}, names = \mbox{[}'Start','Stop',...\mbox{]}) 
+\begin{DoxyCode}
+1 t1,t2 = \hyperlink{namespace_parse_events_a0b1fed420ddaf2125e2dc9cb87180116}{ParseEvents.getStartStopTimes}(df)
+\end{DoxyCode}
+ \hypertarget{namespace_parse_events_ab2c3d02a348ce446c259a8d2f566a85a}{\index{Parse\-Events@{Parse\-Events}!indent@{indent}}
+\index{indent@{indent}!ParseEvents@{Parse\-Events}}
+\subsubsection[{indent}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-indent (
+\begin{DoxyParamCaption}
+\item[{}]{elem, }
+\item[{}]{level = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_ab2c3d02a348ce446c259a8d2f566a85a}
+
+
+Makes Element\-Tree X\-M\-L object pretty for printing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elem} & object to prettify\\
+\hline
+{\em level} & Internally used\\
+\hline
+\end{DoxyParams}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 root = ET.ElementTree(\textcolor{stringliteral}{"SomeFile.xml"})
+2 XML\_Utils.indent(root)
+\end{DoxyCode}
+ \hypertarget{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{\index{Parse\-Events@{Parse\-Events}!parse\-C\-O\-M\-M@{parse\-C\-O\-M\-M}}
+\index{parse\-C\-O\-M\-M@{parse\-C\-O\-M\-M}!ParseEvents@{Parse\-Events}}
+\subsubsection[{parse\-C\-O\-M\-M}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-parse\-C\-O\-M\-M (
+\begin{DoxyParamCaption}
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}
+
+
+Converts C\-O\-M\-M csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Filename of the input event file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+root Etree X\-M\-L root object. Manipulate later. 
+
+csv\-\_\-filename Output Filename to rename xml file as 
+
+df Pandas Dataframe of the C\-O\-M\-M Data 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Examples}
+root,df = \hyperlink{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{Parse\-Events.\-parse\-C\-O\-M\-M}(\char`\"{}\-C\-O\-M\-M\-\_\-filename.\-csv\char`\"{}) 
+\end{DoxyParagraph}
+\hypertarget{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{\index{Parse\-Events@{Parse\-Events}!parse\-C\-S\-V@{parse\-C\-S\-V}}
+\index{parse\-C\-S\-V@{parse\-C\-S\-V}!ParseEvents@{Parse\-Events}}
+\subsubsection[{parse\-C\-S\-V}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-parse\-C\-S\-V (
+\begin{DoxyParamCaption}
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}
+
+
+Parses a C\-S\-V Event File. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Filename of the input event file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+root Etree X\-M\-L root object. Manipulate later. 
+
+df Pandas Dataframe of the Data 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Examples}
+root,df = \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{Parse\-Events.\-parse\-C\-S\-V}(\char`\"{}filename.\-csv\char`\"{}) 
+\end{DoxyParagraph}
+\hypertarget{namespace_parse_events_a647067642e925ceb7ca3bc61d25b5923}{\index{Parse\-Events@{Parse\-Events}!parse\-E\-C\-L\-I\-P\-S\-E@{parse\-E\-C\-L\-I\-P\-S\-E}}
+\index{parse\-E\-C\-L\-I\-P\-S\-E@{parse\-E\-C\-L\-I\-P\-S\-E}!ParseEvents@{Parse\-Events}}
+\subsubsection[{parse\-E\-C\-L\-I\-P\-S\-E}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-parse\-E\-C\-L\-I\-P\-S\-E (
+\begin{DoxyParamCaption}
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a647067642e925ceb7ca3bc61d25b5923}
+
+
+Converts E\-C\-L\-I\-P\-S\-E csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Filename of the input event file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+root Etree X\-M\-L root object. Manipulate later. 
+
+csv\-\_\-filename Output Filename to rename xml file as (combines the paired event files) 
+
+df Pandas Dataframe of the E\-C\-L\-I\-P\-S\-E Data 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Examples}
+root,df = \hyperlink{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{Parse\-Events.\-parse\-C\-O\-M\-M}(\char`\"{}\-E\-C\-L\-I\-P\-S\-E\-\_\-filename.\-csv\char`\"{}) 
+\end{DoxyParagraph}
+\hypertarget{namespace_parse_events_af3991db0839e91cc5f294c8ab35bc5fb}{\index{Parse\-Events@{Parse\-Events}!parse\-M\-A\-N\-E\-U\-V\-E\-R@{parse\-M\-A\-N\-E\-U\-V\-E\-R}}
+\index{parse\-M\-A\-N\-E\-U\-V\-E\-R@{parse\-M\-A\-N\-E\-U\-V\-E\-R}!ParseEvents@{Parse\-Events}}
+\subsubsection[{parse\-M\-A\-N\-E\-U\-V\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-parse\-M\-A\-N\-E\-U\-V\-E\-R (
+\begin{DoxyParamCaption}
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_af3991db0839e91cc5f294c8ab35bc5fb}
+
+
+Converts M\-A\-N\-E\-U\-V\-E\-R csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Filename of the input event file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+root Etree X\-M\-L root object. Manipulate later. 
+
+csv\-\_\-filename Output Filename to rename xml file as (combines the paired event files) 
+
+df Pandas Dataframe of the M\-A\-N\-E\-U\-V\-E\-R Data 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Examples}
+root,df = \hyperlink{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{Parse\-Events.\-parse\-C\-O\-M\-M}(\char`\"{}\-M\-A\-N\-E\-U\-V\-E\-R\-\_\-filename.\-csv\char`\"{}) 
+\end{DoxyParagraph}
+\hypertarget{namespace_parse_events_a34df00eb119ffd8a2ffd0074a3051ccb}{\index{Parse\-Events@{Parse\-Events}!parse\-M\-E\-M\-O\-R\-Y@{parse\-M\-E\-M\-O\-R\-Y}}
+\index{parse\-M\-E\-M\-O\-R\-Y@{parse\-M\-E\-M\-O\-R\-Y}!ParseEvents@{Parse\-Events}}
+\subsubsection[{parse\-M\-E\-M\-O\-R\-Y}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-parse\-M\-E\-M\-O\-R\-Y (
+\begin{DoxyParamCaption}
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a34df00eb119ffd8a2ffd0074a3051ccb}
+
+
+Converts M\-E\-M\-O\-R\-Y csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Filename of the input event file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+root Etree X\-M\-L root object. Manipulate later. 
+
+csv\-\_\-filename Output Filename to rename xml file as (combines the paired event files) 
+
+df Pandas Dataframe of the M\-E\-M\-O\-R\-Y Data 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Examples}
+root,df = \hyperlink{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{Parse\-Events.\-parse\-C\-O\-M\-M}(\char`\"{}\-M\-E\-M\-O\-R\-Y\-\_\-filename.\-csv\char`\"{}) 
+\end{DoxyParagraph}
+\hypertarget{namespace_parse_events_a8033c615535a06566dede5d62f72cac0}{\index{Parse\-Events@{Parse\-Events}!parse\-P\-H\-O\-T\-O@{parse\-P\-H\-O\-T\-O}}
+\index{parse\-P\-H\-O\-T\-O@{parse\-P\-H\-O\-T\-O}!ParseEvents@{Parse\-Events}}
+\subsubsection[{parse\-P\-H\-O\-T\-O}]{\setlength{\rightskip}{0pt plus 5cm}def Parse\-Events.\-parse\-P\-H\-O\-T\-O (
+\begin{DoxyParamCaption}
+\item[{}]{filename}
+\end{DoxyParamCaption}
+)}}\label{namespace_parse_events_a8033c615535a06566dede5d62f72cac0}
+
+
+Converts P\-H\-O\-T\-O csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Filename of the input event file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pluthera of things!
+
+root Etree X\-M\-L root object. Manipulate later. 
+
+csv\-\_\-filename Output Filename to rename xml file as (combines the paired event files) 
+
+df Pandas Dataframe of the P\-H\-O\-T\-O Data
+\end{DoxyReturn}
+{\bfseries Examples} 
+\begin{DoxyCode}
+1 root,df = \hyperlink{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{ParseEvents.parseCOMM}(\textcolor{stringliteral}{"PHOTO\_filename.csv"})
+\end{DoxyCode}
+ 
+
+\subsection{Variable Documentation}
+\hypertarget{namespace_parse_events_a6718feae9a406aaacf93b9b39b2c8ff6}{\index{Parse\-Events@{Parse\-Events}!fnames@{fnames}}
+\index{fnames@{fnames}!ParseEvents@{Parse\-Events}}
+\subsubsection[{fnames}]{\setlength{\rightskip}{0pt plus 5cm}list Parse\-Events.\-fnames}}\label{namespace_parse_events_a6718feae9a406aaacf93b9b39b2c8ff6}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+1 = [\textcolor{stringliteral}{'Input/COMM\_20120717000000\_20120719000000\_20140604114400\_V1.csv'},
+2                   \textcolor{stringliteral}{'Input/ECLIPSE\_SAT1\_20140704000000\_20140711000000\_20140604123800\_V1.csv'},
+3                   \textcolor{stringliteral}{'Input/MANEUVER\_SAT1\_20140704000000\_20140711000000\_20140604124700\_V1.csv'},
+4                   \textcolor{stringliteral}{'Input/MEMORY\_SAT2\_20140704000000\_20140711000000\_20140604124400\_V1.csv'},
+5                   \textcolor{stringliteral}{'Input/PHOTO\_SAT1\_20140704000000\_20140711000000\_20140604124500\_V1.csv'}
+6                   ]
+\end{DoxyCode}
+\hypertarget{namespace_parse_events_a8b2cf86e813095d3510145693bd3e7e1}{\index{Parse\-Events@{Parse\-Events}!p\-Name@{p\-Name}}
+\index{p\-Name@{p\-Name}!ParseEvents@{Parse\-Events}}
+\subsubsection[{p\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string Parse\-Events.\-p\-Name = \char`\"{}Unique\-I\-D.\-pickle\char`\"{}}}\label{namespace_parse_events_a8b2cf86e813095d3510145693bd3e7e1}
+\hypertarget{namespace_parse_events_a0bec8d6d94e659314b932dd430a34eec}{\index{Parse\-Events@{Parse\-Events}!typical\-\_\-in\-\_\-format@{typical\-\_\-in\-\_\-format}}
+\index{typical\-\_\-in\-\_\-format@{typical\-\_\-in\-\_\-format}!ParseEvents@{Parse\-Events}}
+\subsubsection[{typical\-\_\-in\-\_\-format}]{\setlength{\rightskip}{0pt plus 5cm}string Parse\-Events.\-typical\-\_\-in\-\_\-format = '\%d \%b \%Y \%H\-:\%M\-:\%S.\%f'}}\label{namespace_parse_events_a0bec8d6d94e659314b932dd430a34eec}
+\hypertarget{namespace_parse_events_ad3060b0ae7817a67b335de758c4363ac}{\index{Parse\-Events@{Parse\-Events}!xml\-\_\-date\-\_\-format@{xml\-\_\-date\-\_\-format}}
+\index{xml\-\_\-date\-\_\-format@{xml\-\_\-date\-\_\-format}!ParseEvents@{Parse\-Events}}
+\subsubsection[{xml\-\_\-date\-\_\-format}]{\setlength{\rightskip}{0pt plus 5cm}string Parse\-Events.\-xml\-\_\-date\-\_\-format = '\%d-\/\%b-\/\%Y \%H\-:\%M\-:\%S'}}\label{namespace_parse_events_ad3060b0ae7817a67b335de758c4363ac}
+
+
+For datetime package. 
+
+Use \href{http://strftime.org/}{\tt http\-://strftime.\-org/} for reference 

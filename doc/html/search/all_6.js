@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reformat_5fcolumn_5fnames',['reformat_column_names',['../namespace_z_d___utils_1_1_spreadsheet_utils.html#ae123e9775102035a4036b15c45883130',1,'ZD_Utils::SpreadsheetUtils']]]
+  ['mask',['mask',['../namespace_z_d___utils_1_1_spreadsheet_utils.html#ab4c3765269b004f495a03152460ce8e3',1,'ZD_Utils::SpreadsheetUtils']]]
 ];

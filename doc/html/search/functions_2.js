@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['import_5fcsv',['import_csv',['../namespace_z_d___utils_1_1_spreadsheet_utils.html#a4fdba56179861d6f42962ea9999c5c81',1,'ZD_Utils::SpreadsheetUtils']]],
-  ['import_5fexcel',['import_excel',['../namespace_z_d___utils_1_1_spreadsheet_utils.html#a5ae53a4ce51fc5bd17ce4c63f0b40451',1,'ZD_Utils::SpreadsheetUtils']]],
-  ['indent',['indent',['../namespace_z_d___utils_1_1_x_m_l_utils.html#a4e01286aa2a891d78b796216f847fff0',1,'ZD_Utils::XMLUtils']]]
+  ['generatexmlheader',['generateXMLHeader',['../namespace_parse_events.html#a99d337e52231b2739760ef0e22ea1bee',1,'ParseEvents']]],
+  ['getnextuniqueid',['getNextUniqueID',['../namespace_parse_events.html#acf5416340b8836bf73b37db365c2cca9',1,'ParseEvents']]],
+  ['getpairedeventfiles',['getPairedEventFiles',['../namespace_parse_events.html#ac657eb05f8f6dad011f36a1b43ddc5a0',1,'ParseEvents']]],
+  ['getstartstoptimes',['getStartStopTimes',['../namespace_parse_events.html#a0b1fed420ddaf2125e2dc9cb87180116',1,'ParseEvents']]]
 ];

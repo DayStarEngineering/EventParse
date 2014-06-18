@@ -1,0 +1,44 @@
+<FDF_to_FP>
+    <FILENAME>PHOTO_20140704000000_20140711000000_20140604124500_V1.xml</FILENAME>
+    <CREATION_DATE>18-Jun-2014 17:49:17</CREATION_DATE>
+    <START>04-Jul-2014 01:32:00</START>
+    <END>04-Jul-2014 04:00:00</END>
+    <STATE_VECTOR_EPOCH />
+    <STATE_VECTOR />
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 01:43:00</UTC_Start_Time>
+        <Duration>2520000.0</Duration>
+        <Unique_Id>68685</Unique_Id>
+        <Event_Description>PHOTO</Event_Description>
+        <Sat>SAT1</Sat>
+        <Entity />
+        <List_of_Event_Parameters />
+    </Event>
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 03:22:00</UTC_Start_Time>
+        <Duration>2280000.0</Duration>
+        <Unique_Id>68686</Unique_Id>
+        <Event_Description>PHOTO</Event_Description>
+        <Sat>SAT1</Sat>
+        <Entity />
+        <List_of_Event_Parameters />
+    </Event>
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 01:32:00</UTC_Start_Time>
+        <Duration>2280000.0</Duration>
+        <Unique_Id>68687</Unique_Id>
+        <Event_Description>PHOTO</Event_Description>
+        <Sat>SAT2</Sat>
+        <Entity />
+        <List_of_Event_Parameters />
+    </Event>
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 03:10:00</UTC_Start_Time>
+        <Duration>2400000.0</Duration>
+        <Unique_Id>68688</Unique_Id>
+        <Event_Description>PHOTO</Event_Description>
+        <Sat>SAT2</Sat>
+        <Entity />
+        <List_of_Event_Parameters />
+    </Event>
+</FDF_to_FP>

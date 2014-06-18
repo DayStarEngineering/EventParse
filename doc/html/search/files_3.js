@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xmlutils_2epy',['XMLUtils.py',['../_x_m_l_utils_8py.html',1,'']]]
+  ['spreadsheetutils_2epy',['SpreadsheetUtils.py',['../_spreadsheet_utils_8py.html',1,'']]]
 ];

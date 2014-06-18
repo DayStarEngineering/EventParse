@@ -1,0 +1,64 @@
+<FDF_to_FP>
+    <FILENAME>MANEUVER_20140704000000_20140711000000_20140604124700_V1.xml</FILENAME>
+    <CREATION_DATE>18-Jun-2014 17:49:17</CREATION_DATE>
+    <START>04-Jul-2014 01:31:00</START>
+    <END>04-Jul-2014 04:00:00</END>
+    <STATE_VECTOR_EPOCH />
+    <STATE_VECTOR />
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 01:42:00</UTC_Start_Time>
+        <Duration>60000.0</Duration>
+        <Unique_Id>68679</Unique_Id>
+        <Event_Description>MANEUVER</Event_Description>
+        <Sat>SAT1</Sat>
+        <Entity />
+        <List_of_Event_Parameters>
+            <Event_Parameter>
+                <Event_Par_Name>ACS_POINT</Event_Par_Name>
+                <Event_Par_Value>NADIR</Event_Par_Value>
+            </Event_Parameter>
+        </List_of_Event_Parameters>
+    </Event>
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 02:25:00</UTC_Start_Time>
+        <Duration>600000.0</Duration>
+        <Unique_Id>68680</Unique_Id>
+        <Event_Description>MANEUVER</Event_Description>
+        <Sat>SAT1</Sat>
+        <Entity />
+        <List_of_Event_Parameters>
+            <Event_Parameter>
+                <Event_Par_Name>ACS_POINT</Event_Par_Name>
+                <Event_Par_Value>SUN</Event_Par_Value>
+            </Event_Parameter>
+        </List_of_Event_Parameters>
+    </Event>
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 01:31:00</UTC_Start_Time>
+        <Duration>60000.0</Duration>
+        <Unique_Id>68681</Unique_Id>
+        <Event_Description>MANEUVER</Event_Description>
+        <Sat>SAT2</Sat>
+        <Entity />
+        <List_of_Event_Parameters>
+            <Event_Parameter>
+                <Event_Par_Name>ACS_POINT</Event_Par_Name>
+                <Event_Par_Value>NADIR</Event_Par_Value>
+            </Event_Parameter>
+        </List_of_Event_Parameters>
+    </Event>
+    <Event>
+        <UTC_Start_Time>04-Jul-2014 03:50:00</UTC_Start_Time>
+        <Duration>600000.0</Duration>
+        <Unique_Id>68682</Unique_Id>
+        <Event_Description>MANEUVER</Event_Description>
+        <Sat>SAT2</Sat>
+        <Entity />
+        <List_of_Event_Parameters>
+            <Event_Parameter>
+                <Event_Par_Name>ACS_POINT</Event_Par_Name>
+                <Event_Par_Value>SUN</Event_Par_Value>
+            </Event_Parameter>
+        </List_of_Event_Parameters>
+    </Event>
+</FDF_to_FP>

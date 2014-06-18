@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('_parse_events_8py.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,7 +107,8 @@ $(document).ready(function(){initNavTree('_parse_events_8py.html','');});
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">ParseEvents.py File Reference</div>  </div>
 </div><!--header-->
@@ -120,12 +121,57 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4c8c7252291582e8a3a4e503a5fbfae8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a4c8c7252291582e8a3a4e503a5fbfae8">ParseEvents.myfunction</a></td></tr>
-<tr class="memdesc:a4c8c7252291582e8a3a4e503a5fbfae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing more than demonstrate syntax.  <a href="#a4c8c7252291582e8a3a4e503a5fbfae8">More...</a><br/></td></tr>
-<tr class="separator:a4c8c7252291582e8a3a4e503a5fbfae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0f0207d1a304ffa7539b8c287aa682b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#ac0f0207d1a304ffa7539b8c287aa682b">ParseEvents.event_to_xml</a></td></tr>
-<tr class="memdesc:ac0f0207d1a304ffa7539b8c287aa682b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function turns a command dataframe (split by header/data rows) into a printable XML format Run 'help(cmd_to_xml)' in interactive mode to print this statement out Input *df_h - Header row dataframe taken from command spreadsheet *df_d - Data rows dataframe taken from command spreadsheet.  <a href="#ac0f0207d1a304ffa7539b8c287aa682b">More...</a><br/></td></tr>
-<tr class="separator:ac0f0207d1a304ffa7539b8c287aa682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf5416340b8836bf73b37db365c2cca9"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#acf5416340b8836bf73b37db365c2cca9">ParseEvents.getNextUniqueID</a></td></tr>
+<tr class="memdesc:acf5416340b8836bf73b37db365c2cca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch the next unique ID to use in event creation.  <a href="#acf5416340b8836bf73b37db365c2cca9">More...</a><br/></td></tr>
+<tr class="separator:acf5416340b8836bf73b37db365c2cca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c84c086b277fca088823a8538c21ba"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#ac1c84c086b277fca088823a8538c21ba">ParseEvents.convertTimeFormat</a></td></tr>
+<tr class="memdesc:ac1c84c086b277fca088823a8538c21ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts time format to be Flexplan-compliant.  <a href="#ac1c84c086b277fca088823a8538c21ba">More...</a><br/></td></tr>
+<tr class="separator:ac1c84c086b277fca088823a8538c21ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c3d02a348ce446c259a8d2f566a85a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#ab2c3d02a348ce446c259a8d2f566a85a">ParseEvents.indent</a></td></tr>
+<tr class="memdesc:ab2c3d02a348ce446c259a8d2f566a85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes ElementTree XML object pretty for printing.  <a href="#ab2c3d02a348ce446c259a8d2f566a85a">More...</a><br/></td></tr>
+<tr class="separator:ab2c3d02a348ce446c259a8d2f566a85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99d337e52231b2739760ef0e22ea1bee"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a99d337e52231b2739760ef0e22ea1bee">ParseEvents.generateXMLHeader</a></td></tr>
+<tr class="memdesc:a99d337e52231b2739760ef0e22ea1bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates an XML handle with header information filled in.  <a href="#a99d337e52231b2739760ef0e22ea1bee">More...</a><br/></td></tr>
+<tr class="separator:a99d337e52231b2739760ef0e22ea1bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b1fed420ddaf2125e2dc9cb87180116"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a0b1fed420ddaf2125e2dc9cb87180116">ParseEvents.getStartStopTimes</a></td></tr>
+<tr class="memdesc:a0b1fed420ddaf2125e2dc9cb87180116"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the erliest start time and latest stop time in a dataframe.  <a href="#a0b1fed420ddaf2125e2dc9cb87180116">More...</a><br/></td></tr>
+<tr class="separator:a0b1fed420ddaf2125e2dc9cb87180116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac657eb05f8f6dad011f36a1b43ddc5a0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#ac657eb05f8f6dad011f36a1b43ddc5a0">ParseEvents.getPairedEventFiles</a></td></tr>
+<tr class="memdesc:ac657eb05f8f6dad011f36a1b43ddc5a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads event files that come in pairs (for each satellite, etc) into a single dataframe.  <a href="#ac657eb05f8f6dad011f36a1b43ddc5a0">More...</a><br/></td></tr>
+<tr class="separator:ac657eb05f8f6dad011f36a1b43ddc5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09ebba26849e0a43ded60804c8953a2c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a09ebba26849e0a43ded60804c8953a2c">ParseEvents.parseCSV</a></td></tr>
+<tr class="memdesc:a09ebba26849e0a43ded60804c8953a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a CSV Event File.  <a href="#a09ebba26849e0a43ded60804c8953a2c">More...</a><br/></td></tr>
+<tr class="separator:a09ebba26849e0a43ded60804c8953a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10703d4160f8f5428f3718df422e97a0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a10703d4160f8f5428f3718df422e97a0">ParseEvents.createEventElement</a></td></tr>
+<tr class="memdesc:a10703d4160f8f5428f3718df422e97a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an ETree XML element.  <a href="#a10703d4160f8f5428f3718df422e97a0">More...</a><br/></td></tr>
+<tr class="separator:a10703d4160f8f5428f3718df422e97a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5a20ae407ba5bf60682ca51b84750c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#adc5a20ae407ba5bf60682ca51b84750c">ParseEvents.parseCOMM</a></td></tr>
+<tr class="memdesc:adc5a20ae407ba5bf60682ca51b84750c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts COMM csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from <code><a class="el" href="namespace_parse_events.html#a09ebba26849e0a43ded60804c8953a2c" title="Parses a CSV Event File. ">parseCSV()</a></code>  <a href="#adc5a20ae407ba5bf60682ca51b84750c">More...</a><br/></td></tr>
+<tr class="separator:adc5a20ae407ba5bf60682ca51b84750c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a647067642e925ceb7ca3bc61d25b5923"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a647067642e925ceb7ca3bc61d25b5923">ParseEvents.parseECLIPSE</a></td></tr>
+<tr class="memdesc:a647067642e925ceb7ca3bc61d25b5923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts ECLIPSE csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from <code><a class="el" href="namespace_parse_events.html#a09ebba26849e0a43ded60804c8953a2c" title="Parses a CSV Event File. ">parseCSV()</a></code>  <a href="#a647067642e925ceb7ca3bc61d25b5923">More...</a><br/></td></tr>
+<tr class="separator:a647067642e925ceb7ca3bc61d25b5923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3991db0839e91cc5f294c8ab35bc5fb"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#af3991db0839e91cc5f294c8ab35bc5fb">ParseEvents.parseMANEUVER</a></td></tr>
+<tr class="memdesc:af3991db0839e91cc5f294c8ab35bc5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts MANEUVER csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from <code><a class="el" href="namespace_parse_events.html#a09ebba26849e0a43ded60804c8953a2c" title="Parses a CSV Event File. ">parseCSV()</a></code>  <a href="#af3991db0839e91cc5f294c8ab35bc5fb">More...</a><br/></td></tr>
+<tr class="separator:af3991db0839e91cc5f294c8ab35bc5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34df00eb119ffd8a2ffd0074a3051ccb"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a34df00eb119ffd8a2ffd0074a3051ccb">ParseEvents.parseMEMORY</a></td></tr>
+<tr class="memdesc:a34df00eb119ffd8a2ffd0074a3051ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts MEMORY csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from <code><a class="el" href="namespace_parse_events.html#a09ebba26849e0a43ded60804c8953a2c" title="Parses a CSV Event File. ">parseCSV()</a></code>  <a href="#a34df00eb119ffd8a2ffd0074a3051ccb">More...</a><br/></td></tr>
+<tr class="separator:a34df00eb119ffd8a2ffd0074a3051ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8033c615535a06566dede5d62f72cac0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a8033c615535a06566dede5d62f72cac0">ParseEvents.parsePHOTO</a></td></tr>
+<tr class="memdesc:a8033c615535a06566dede5d62f72cac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts PHOTO csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from <code><a class="el" href="namespace_parse_events.html#a09ebba26849e0a43ded60804c8953a2c" title="Parses a CSV Event File. ">parseCSV()</a></code>  <a href="#a8033c615535a06566dede5d62f72cac0">More...</a><br/></td></tr>
+<tr class="separator:a8033c615535a06566dede5d62f72cac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8b2cf86e813095d3510145693bd3e7e1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a8b2cf86e813095d3510145693bd3e7e1">ParseEvents.pName</a> = &quot;UniqueID.pickle&quot;</td></tr>
+<tr class="separator:a8b2cf86e813095d3510145693bd3e7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3060b0ae7817a67b335de758c4363ac"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#ad3060b0ae7817a67b335de758c4363ac">ParseEvents.xml_date_format</a> = '%d-%b-%Y %H:%M:%S'</td></tr>
+<tr class="memdesc:ad3060b0ae7817a67b335de758c4363ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">For datetime package.  <a href="#ad3060b0ae7817a67b335de758c4363ac">More...</a><br/></td></tr>
+<tr class="separator:ad3060b0ae7817a67b335de758c4363ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bec8d6d94e659314b932dd430a34eec"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a0bec8d6d94e659314b932dd430a34eec">ParseEvents.typical_in_format</a> = '%d %b %Y %H:%M:%S.%f'</td></tr>
+<tr class="separator:a0bec8d6d94e659314b932dd430a34eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6718feae9a406aaacf93b9b39b2c8ff6"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_parse_events.html#a6718feae9a406aaacf93b9b39b2c8ff6">ParseEvents.fnames</a></td></tr>
+<tr class="separator:a6718feae9a406aaacf93b9b39b2c8ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -133,7 +179,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_parse_events_8py.html">ParseEvents.py</a></li>
-    <li class="footer">Generated on Tue Jun 10 2014 12:10:23 for StartEnd by
+    <li class="footer">Generated on Wed Jun 18 2014 12:14:32 for StartEnd by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -9,7 +9,40 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{namespace_parse_events_a4c8c7252291582e8a3a4e503a5fbfae8}{Parse\-Events.\-myfunction}
-\begin{DoxyCompactList}\small\item\em Does nothing more than demonstrate syntax. \end{DoxyCompactList}\item 
-def \hyperlink{namespace_parse_events_ac0f0207d1a304ffa7539b8c287aa682b}{Parse\-Events.\-event\-\_\-to\-\_\-xml}
-\begin{DoxyCompactList}\small\item\em This function turns a command dataframe (split by header/data rows) into a printable X\-M\-L format Run 'help(cmd\-\_\-to\-\_\-xml)' in interactive mode to print this statement out Input $\ast$df\-\_\-h -\/ Header row dataframe taken from command spreadsheet $\ast$df\-\_\-d -\/ Data rows dataframe taken from command spreadsheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+def \hyperlink{namespace_parse_events_acf5416340b8836bf73b37db365c2cca9}{Parse\-Events.\-get\-Next\-Unique\-I\-D}
+\begin{DoxyCompactList}\small\item\em Fetch the next unique I\-D to use in event creation. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_ac1c84c086b277fca088823a8538c21ba}{Parse\-Events.\-convert\-Time\-Format}
+\begin{DoxyCompactList}\small\item\em Converts time format to be Flexplan-\/compliant. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_ab2c3d02a348ce446c259a8d2f566a85a}{Parse\-Events.\-indent}
+\begin{DoxyCompactList}\small\item\em Makes Element\-Tree X\-M\-L object pretty for printing. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a99d337e52231b2739760ef0e22ea1bee}{Parse\-Events.\-generate\-X\-M\-L\-Header}
+\begin{DoxyCompactList}\small\item\em Generates an X\-M\-L handle with header information filled in. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a0b1fed420ddaf2125e2dc9cb87180116}{Parse\-Events.\-get\-Start\-Stop\-Times}
+\begin{DoxyCompactList}\small\item\em Finds the erliest start time and latest stop time in a dataframe. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_ac657eb05f8f6dad011f36a1b43ddc5a0}{Parse\-Events.\-get\-Paired\-Event\-Files}
+\begin{DoxyCompactList}\small\item\em Loads event files that come in pairs (for each satellite, etc) into a single dataframe. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{Parse\-Events.\-parse\-C\-S\-V}
+\begin{DoxyCompactList}\small\item\em Parses a C\-S\-V Event File. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a10703d4160f8f5428f3718df422e97a0}{Parse\-Events.\-create\-Event\-Element}
+\begin{DoxyCompactList}\small\item\em Creates an E\-Tree X\-M\-L element. \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_adc5a20ae407ba5bf60682ca51b84750c}{Parse\-Events.\-parse\-C\-O\-M\-M}
+\begin{DoxyCompactList}\small\item\em Converts C\-O\-M\-M csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a647067642e925ceb7ca3bc61d25b5923}{Parse\-Events.\-parse\-E\-C\-L\-I\-P\-S\-E}
+\begin{DoxyCompactList}\small\item\em Converts E\-C\-L\-I\-P\-S\-E csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_af3991db0839e91cc5f294c8ab35bc5fb}{Parse\-Events.\-parse\-M\-A\-N\-E\-U\-V\-E\-R}
+\begin{DoxyCompactList}\small\item\em Converts M\-A\-N\-E\-U\-V\-E\-R csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a34df00eb119ffd8a2ffd0074a3051ccb}{Parse\-Events.\-parse\-M\-E\-M\-O\-R\-Y}
+\begin{DoxyCompactList}\small\item\em Converts M\-E\-M\-O\-R\-Y csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\item 
+def \hyperlink{namespace_parse_events_a8033c615535a06566dede5d62f72cac0}{Parse\-Events.\-parse\-P\-H\-O\-T\-O}
+\begin{DoxyCompactList}\small\item\em Converts P\-H\-O\-T\-O csv into an xml file for Flexplan ingestion Intent is for this menthod to be dynamically called from {\ttfamily \hyperlink{namespace_parse_events_a09ebba26849e0a43ded60804c8953a2c}{parse\-C\-S\-V()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespace_parse_events_a8b2cf86e813095d3510145693bd3e7e1}{Parse\-Events.\-p\-Name} = \char`\"{}Unique\-I\-D.\-pickle\char`\"{}
+\item 
+string \hyperlink{namespace_parse_events_ad3060b0ae7817a67b335de758c4363ac}{Parse\-Events.\-xml\-\_\-date\-\_\-format} = '\%d-\/\%b-\/\%Y \%H\-:\%M\-:\%S'
+\begin{DoxyCompactList}\small\item\em For datetime package. \end{DoxyCompactList}\item 
+string \hyperlink{namespace_parse_events_a0bec8d6d94e659314b932dd430a34eec}{Parse\-Events.\-typical\-\_\-in\-\_\-format} = '\%d \%b \%Y \%H\-:\%M\-:\%S.\%f'
+\item 
+list \hyperlink{namespace_parse_events_a6718feae9a406aaacf93b9b39b2c8ff6}{Parse\-Events.\-fnames}
+\end{DoxyCompactItemize}
